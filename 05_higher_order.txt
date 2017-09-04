@@ -19,7 +19,7 @@ karatee hai pareshaan prograamar, badale mein, galatiyon ko shuroo karate hain
 sthaan pradaan karata hai chhupaane ke lie, unhen khojane ke lie mushkil bana
 rahee hai
 
-
+________________________________________________________________________________finish
 
 (((summing example)))Let's briefly go back to the final two example
 programs in the introduction. The first is self-contained and six
@@ -71,7 +71,7 @@ Agar hum 'sum' aur 'range' ki defination ka size count kare to, Second program b
 Numbers ki range loops aur counters par depend ni karti wo keval ranges and sums par depend karti hai.
 
 'sum' aur 'range' ki definitions mei abhi bhi loops aur counters available hai.kyuki isse hume pure program ka flow pta chlta hai aur isse kisi bhi concept ko aaram se smjh sakte hai.
-
+________________________________________________________________________________finish
 
 == Abstraction ==
 
