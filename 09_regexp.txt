@@ -10,6 +10,10 @@ ____
 Some people, when confronted with a
 problem, think ‘I know, I'll use regular expressions.’ Now they have
 two problems.
+
+kuchh logon ko, jab ek ke saath saamana kiya
+samasya, lagata hai mujhe pata hai, main niyamit abhivyakti ka upayog karenge. ab ve hain
+do samasyaen
 ____
 
 ifdef::interactive_target[]
@@ -20,6 +24,10 @@ ____
 Yuan-Ma said, ‘When you cut against the grain of the wood, much
 strength is needed. When you program against the grain of a problem,
 much code is needed.’
+
+Yuan-Ma said, jab aap lakadee ke anaaj ke khilaaph kaatate hain, to bahut kuchh
+taakat aavashyak hai jab aap ek samasya ke anaaj ke khilaaph kaaryakram,
+bahut kod kee aavashyakata hai
 ____
 
 endif::interactive_target[]
@@ -31,11 +39,28 @@ way. It's not always the pretty or brilliant ones that win but rather
 the ones that function well enough within the right niche—for example,
 by being integrated with another successful piece of technology.
 
+
+(((Zawinski+++,+++
+Jamie)))(((evolution)))(((adoption)))(((integration)))Programming
+((tool))s and takaneek jeevit rahatee hai aur ek araajak, vikaasavaadee mein phailatee hai
+maarg. yah hamesha sundar ya shaanadaar logon ko nahin balki jeetata hai, balki jeetata hai
+jo ki sahee jagah ke bheetar achchhee tarah se kaam karate hain- udaaharan ke lie,
+praudyogikee ka ek aur saphal tukada ke saath ekeekrt karake
+
+
 (((domain-specific language)))In this chapter, I will discuss one such
 tool, _((regular expression))s_. Regular expressions are a way to
 describe ((pattern))s in string data. They form a small, separate
 language that is part of JavaScript and many other languages and
 tools.
+
+(((domain-specific language))) is adhyaay mein, main ek aisee charcha karega
+upakaran, _ ((niyamit abhivyakti)) s_. niyamit abhivyakti ek tareeka hai
+string deta mein ((paitarn)) ka varnan karen ve chhote, alag-alag hote hain
+bhaasha jo jaavaaskript aur kaee any bhaashaon ka hissa hai aur
+upakaran.
+
+
 
 (((interface,design)))Regular expressions are both terribly awkward
 and extremely useful. Their syntax is cryptic, and the programming
@@ -44,6 +69,13 @@ powerful ((tool)) for inspecting and processing strings. Properly
 understanding regular expressions will make you a more effective
 programmer.
 
+(((interface,design))) niyamit abhivyakti donon bahut ajeeb hain
+aur atyant upayogee unaka vaakyavinyaas gupt, aur prograaming hai
+((intarafes)) jaavaaskript unake lie betarateeb hai. lekin ve ek hain
+taakatavar (upakaran)) nireekshan aur string ko sansaadhit karane ke lie. achchhee tarah
+niyamit abhivyaktiyon ko samajhane se aapako adhik prabhaavakaaree milega
+prograamar.
+
 == Creating a regular expression ==
 
 (((regular expression,creation)))(((RegExp constructor)))(((literal
@@ -51,6 +83,14 @@ expression)))(((slash character)))A regular expression is a type of
 object. It can either be constructed with the `RegExp` constructor or
 written as a literal value by enclosing the pattern in forward slash
 (`/`) characters.
+
+(((regular expression,creation)))(((RegExp constructor)))(((literal
+expression)))(((slash character))) ek niyamit abhivyakti ek prakaar ka hai
+vastu. ise ya to `regeks kanstraktar ke saath banaaya ja sakata hai ya
+phoravarding slaish mein paitarn ko jodakar ek shaabdik mooly ke roop mein likha gaya
+(`/`) varn
+
+
 
 [source,javascript]
 ----
@@ -61,9 +101,19 @@ var re2 = /abc/;
 Both of these regular expression objects represent the same
 ((pattern)): an _a_ character followed by a _b_ followed by a _c_.
 
+
+in donon niyamit abhivyakti objekts usee ka pratinidhitv karate hain
+((paitarn)):an _a_ character followed by a _b_ followed by a _c_.
+
+
 (((backslash character)))(((RegExp constructor)))When using the
 `RegExp` constructor, the pattern is written as a normal string, so
 the usual rules apply for backslashes.
+
+(((backslash character)))(((RegExp constructor))) ka upayog karate samay
+`regeks kanstraktar, paitarn ko ek saamaany string ke roop mein likha gaya hai, isalie
+baikaslaish ke lie saamaany niyam laagoo hote hain
+
 
 (((regular expression,escaping)))(((escaping,in regexps)))(((slash
 character)))The second notation, where the pattern appears between
@@ -77,6 +127,20 @@ as question marks and plus signs, have special meanings in regular
 expressions and must be preceded by a backslash if they are meant to
 represent the character itself.
 
+
+
+(((regular expression,escaping)))(((escaping,in regexps)))(((slash
+character))) doosare ankan, jahaan paitarn ke beech mein dikhaee deta hai
+slaish akshar, baikaslaish ko kuchh had tak alag tarah se vyavahaar karata hai. pratham,
+kyonki ek phoravard slaish paitarn samaapt karata hai, hamen ek baikaslaish daalanee hogee
+kisee bhee aage slaish se pahale ki ham paitarn ke _part_ hona chaahate hain mein
+isake alaava, baikaslaish jo vishesh varn kod ka hissa nahin hain
+(jaise `\ n`) ko _preshit_ kiya jaega, na ki usamen anadekha kie jaane ke bajaay
+strings, aur paitarn ka arth badalana kuchh akshar, jaise
+prashn chihn aur plas chihn ke roop mein, niyamit roop se vishesh arth hain
+abhivyakti aur ek baikaslaish se pahale hone chaahie yadi ve hain
+charitr ka pratinidhitv
+
 [source,javascript]
 ----
 var eighteenPlus = /eighteen\+/;
@@ -88,6 +152,12 @@ special meaning. For the time being, this may not be realistic, so
 when in doubt, just put a backslash before any character that is not a
 letter, number, or ((whitespace)).
 
+likhane ke dauraan theek se jaanane ke lie ki kaun-se akshar baikaslaish-bach jaate hain
+niyamit abhivyakti ke lie aapako pratyek varn ko ek ke saath jaanana hoga
+vishesh arth samay ke lie, yah yathaarthavaadee nahin ho sakata hai, isalie
+jab sandeh mein hai, to kisee bhee charitr se pahale ek baikaslaish daal den jo ki ek nahin hai
+akshar, sankhya, ya ((whitespace)).
+
 == Testing for matches ==
 
 (((matching)))(((test method)))(((regular expression,methods)))Regular
@@ -95,6 +165,12 @@ expression objects have a number of methods. The simplest one is
 `test`. If you pass it a string, it will return a ((Boolean)) telling
 you whether the string contains a match of the pattern in the
 expression.
+
+(((matching)))(((test method)))(((regular expression,methods))) niyamit
+abhivyakti objekts mein kaee tareekon hain saralatam ek hai
+`taist`. yadi aap ise ek string paas karate hain, to yah ek ((booliyan)) vaapas kar dega
+kya aap string mein paitarn ka ek maich rakhate hain ya nahin
+abhivyakti.
 
 [source,javascript]
 ----
@@ -109,6 +185,12 @@ characters simply represents that sequence of characters. If _abc_
 occurs anywhere in the string we are testing against (not just at the
 start), `test` will return `true`.
 
+
+(((pattern)))A ((regular expression)) keval gair-vishisht
+varn keval varnon ka anukram darshaata hai agar _abch_
+string mein kaheen bhee hota hai jo ham isake khilaaph pareekshan kar rahe hain (na keval par
+praarambh), `test`` saty` vaapas karega
+
 == Matching a set of characters ==
 
 (((regular expression)))(((indexOf method)))Finding out whether a
@@ -116,11 +198,22 @@ string contains _abc_ could just as well be done with a call to
 `indexOf`. Regular expressions allow us to go beyond that and express
 more complicated ((pattern))s.
 
+(((regular expression)))(((indexOf method))) pata lagaana ki kya koee
+string mein _abch_ ko kol ke saath hee kiya ja sakata hai
+`indaixof`. niyamit abhivyakti hamen us paar jaane aur abhivyakt karane kee anumati detee hai
+adhik jatil (paitarn)) es.
+
 Say we want to match any ((number)). In a regular expression, putting
 a ((set)) of characters between square brackets makes that part of the
 expression match any of the characters between the brackets.
 
+kahen ki ham kisee bhee ((sankhya)) se mel khaana chaahate hain. ek niyamit abhivyakti mein, daal
+ek ((set)) varg ke koshthak ke beech ke akshar ka us hisse ko banaata hai
+abhivyakti koshthak ke beech ke kisee bhee akshar se mel khaata hai.
+
 Both of the following expressions match all strings that contain a ((digit)):
+
+nimn donon bhaav sabhee strings se yukt hote hain jinamen ((digit) hote hain):
 
 [source,javascript]
 ----
@@ -137,10 +230,23 @@ Characters 0 to 9 sit right next to each other in this ordering
 (codes 48 to 57), so `[0-9]` covers all of them and matches any
 ((digit)).
 
+(((daish kairektar))) chaukor braiket ke andar, do ke beech ek daish (`-`)
+varnon ka ek ((shrenee)) sanket karane ke lie istemaal kiya ja sakata hai, jahaan
+kram ko varn ke (yoonikod)) sankhya se nirdhaarit kiya jaata hai.
+varn kramashah 0 se 9 is aadesh mein ek-doosare ke bagal mein baithe hain
+(kod 48 se 57), isalie `[0- 9]` un sabhee ko kavar karata hai aur kisee bhee maich karata hai
+((digit)).
+
 (((whitespace)))(((alphanumeric character)))(((period
 character)))There are a number of common character groups that have
 their own built-in shortcuts. Digits are one of them: `\d` means the
 same thing as `[0-9]`.
+
+(((whitespace)))(((alphanumeric character)))(((period
+character))) isamen kaee saamaany charitr samoohon kee sankhya hai
+apane svayan ke shortakat mein nirmit ank unamen se ek hain: `\ d` ka matalab hai
+`[0- 9]` ke roop mein ek hee baat
+
 
 [cols="1,5"]
 |====
@@ -171,6 +277,12 @@ spot the actual ((pattern)) expressed. We'll see a slightly improved
 version of this expression
 link:09_regexp.html#date_regexp_counted[later].
 
+(((backslash character))) yah pooree tarah se bhayaanak lag raha hai, hai na? yah bhee raasta hai
+kaee baikaslaish, prshthabhoomi shor ka utpaadan jo ise kathin bana deta hai
+vaastavik ((paitarn)) ko vyakt kiya. ham thoda sudhaar dekhenge
+is abhivyakti ke sanskaran
+link: 09_raigaixp.html # datai_raigaixp_chountaid [baad mein]।
+
 (((escaping,in regexps)))(((regular expression)))(((set)))These
 backslash codes can also be used inside ((square brackets)). For
 example, `[\d.]` means any digit or a period character. But note that
@@ -178,10 +290,28 @@ the period itself, when used between square brackets, loses its
 special meaning. The same goes for other special characters, such as
 `+`.
 
+(((escaping,in regexps)))(((regular expression)))(((set))) in
+baikaslaish kod ke andar bhee istemaal kiya ja sakata hai (skvaayar koshthak)). ke liye
+udaaharan ke lie, `[\ d.] ka matalab kisee bhee ank ya avadhi varn hai. lekin dhyaan den ki
+yah avadhi, jab varg koshthak ke beech prayog kiya jaata hai, isakee kho deta hai
+vishesh arth vahee any vishesh varnon ke lie jaata hai, jaise ki
+`+`.
+
+ (((escaping,in regexps)))(((regular expression)))(((set))) mein
+baakaasaleesh kode mein aur bhee saath mein hain jo shak hai hai (skaaveyar koshak)). ke lie
+udaharan ke lie jhooth, `[\ dee.] ka matalaab kise hee aankh ya avord hain. lekeen dharan den kee
+yaah avadhee, jab tak koshak ke beech mein praarthana kee jae, ikekee kho raat hai
+vishesh arth vaahi kisee bhee vishisht vaarne ke lie jaane hain, jay
+
 (((square brackets)))(((inversion)))(((caret character)))To _invert_ a
 set of characters—that is, to express that you want to match any
 character _except_ the ones in the set—you can write a caret (`^`)
 character after the opening bracket.
+
+ (((square brackets)))(((inversion)))(((caret character))) _invairt_ e ke lie
+varnon ka set-arthaat, yah vyakt karane ke lie ki aap kisee bhee maich karana chaahate hain
+charitr _aixchaipt_ set mein vaale-aap ek kairet (`^`) likh sakate hain
+udghaatan braiket ke baad ka charitr.
 
 [source,javascript]
 ----
@@ -198,10 +328,20 @@ console.log(notBinary.test("1100100010200110"));
 if we want to match a whole number—a ((sequence)) of one or more
 ((digit))s?
 
+(((regular expression,repetition))) ab ham jaanate hain ki ek ekal ank se milaan kaise kiya jae. kya
+agar ham ek ya adhik kee pooree sankhya -ek (anukram) se mel khaana chaahate hain
+((digit)) ron ?.
+
 (((plus character)))(((repetition)))(((+ operator)))When you put a
 plus sign (`+`) after something in a regular expression, it indicates
 that the element may be repeated more than once. Thus, `/\d+/` matches
 one or more digit characters.
+
+
+(((plus character)))(((repetition)))(((+ operator))) jab aap ek daal
+ek niyamit abhivyakti mein kuchh ke baad plas chihn (`+`), yah ingit karata hai
+ki tatv ek se adhik baar doharaaya ja sakata hai. is prakaar, `/ \ d + /` milaan
+ek ya adhik ank akshar
 
 [source,javascript]
 ----
@@ -220,10 +360,22 @@ meaning but also allows the pattern to match zero times. Something
 with a star after it never prevents a pattern from matching—it'll just
 match zero instances if it can't find any suitable text to match.
 
+(((pass:[*] operator)))(((asterisk))) staar (`*`) ka ek samaan hai
+arth hai lekin yah bhee paitarn ko shoony samay se mel karane kee anumati deta hai. kuchh kuchh
+ek staar ke saath, jab vah kisee paitarn ko milaan se kabhee nahin rokata hai-yah sirph hoga
+shoony udaaharanon ka milaan karen yadi maich ke lie koee upayukt tekst nahin mil sakata hai.
+
+
 (((British English)))(((American English)))(((question mark)))A
 question mark makes a part of a pattern “((optional))”, meaning it may
 occur zero or one time. In the following example, the _u_ character
 is allowed to occur, but the pattern also matches when it is missing.
+
+
+(((British English)))(((American English)))(((question mark)))
+prashn chihn ek paitarn "((vaikalpik)) ka ek hissa banaata hai", jisaka arth yah ho sakata hai
+shoony ya ek baar ho nimn udaaharan mein, _u_ varn
+hone kee anumati hai, lekin paitarn yaad aa rahee hai jab bhee mel khaata hai.
 
 [source,javascript]
 ----
@@ -240,10 +392,22 @@ an element, for example, requires it to occur exactly four times. It
 is also possible to specify a ((range)) this way: `{2,4}` means the
 element must occur at least twice and at most four times.
 
+(((repetition)))(((curly braces))) yah sanket dene ke lie ki ek paitarn chaahie
+samay kee ek sateek sankhya hotee hai, karlee bresiz ka upayog karen `{4}` ko lagae jaane ke baad
+ek tatv, udaaharan ke lie, ise vaastav mein chaar baar hone kee aavashyakata hai yah
+yah bhee ((shrenee)) ko nirdisht karana sambhav hai: `{2,4}` ka matalab hai
+tatv kam se kam do baar aur adhikatam chaar baar hona chaahie.
+jee.
+
+
 [[date_regexp_counted]]
 Here is another version of the ((date)) and ((time)) pattern that
 allows both single- and double-((digit)) days, months, and hours. It
 is also slightly more readable.
+
+yahaan ((tithi)) aur ((samay)) paitarn ka doosara sanskaran hai
+donon ekal aur dabal - ((ank)) din, maheenon aur ghante donon kee anumati deta hai. yah
+bhee thoda adhik pathaneey hai
 
 [source,javascript]
 ----
@@ -284,7 +448,7 @@ is itself all lowercase.
 == Matches and groups ==
 
 (((regular expression,grouping)))(((exec method)))(((array)))The `test` method
-is the absolute simplest way to match a regular expression. It 
+is the absolute simplest way to match a regular expression. It
 tells you only whether it matched and nothing else. Regular expressions
 also have an `exec` (execute) method that will return `null` if no
 match was found and return an object with information about the match
@@ -505,7 +669,7 @@ a current position in the string, and every time we move through a
 box, we verify that the part of the string after our current position
 matches that box.
 
-So if we try to match `"the 3 pigs"` with our regular expression, 
+So if we try to match `"the 3 pigs"` with our regular expression,
 our progress through the flow chart would look like this:
 
  - At position 4, there is a word ((boundary)), so we can move past
@@ -988,7 +1152,7 @@ such object for each section and one for the global settings at the
 top.
 
 (((carriage return)))(((line break)))(((newline character)))Since the
-format has to be processed ((line)) by line, splitting up the file 
+format has to be processed ((line)) by line, splitting up the file
 into separate lines is a good start. We used `string.split("\n")` to
 do this in link:06_object.html#split[Chapter 6]. Some operating
 systems, however, use not just a newline character to separate lines
