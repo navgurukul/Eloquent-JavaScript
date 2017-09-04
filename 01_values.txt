@@ -1,493 +1,298 @@
-:chap_num: 1
-:prev_link: 00_intro
-:next_link: 02_program_structure
-:docid: values
+CHAPTER ==>> 1
 
-= Values, Types, and Operators =
 
-[chapterquote="true"]
-[quote, Master Yuan-Ma, The Book of Programming]
-____
-Below the surface of the
-machine, the program moves. Without effort, it expands and contracts.
-In great harmony, electrons scatter and regroup. The forms on the
-monitor are but ripples on the water. The essence stays invisibly
-below.
-____
+Values, Types and Operators
+Kabhi aapne socha hai, computer mei kaise kuch bhi store hota hai? Computer mei har cheez data ke form mei hoti hai, aapki files, aapka code, sab kuch. Aur data kaise store hota hai? Data bits ke form mei store hota hai. 
 
-(((Yuan-Ma)))(((Book of Programming)))(((binary
-data)))(((data)))(((bit)))(((memory)))Inside the computer's world,
-there is only data. You can read data, modify data, create new
-data—but anything that isn't data simply does not exist. All this data
-is stored as long sequences of bits and is thus fundamentally alike.
+Bit ki 2 values hoti hai - zero aur one. Computer ke andar bits electrical charge ki form mei store hota hai - high signal matlab one, aur low signal matlab zero. 
 
-(((CD)))(((signal)))Bits are any kind of two-valued things, usually
-described as zeros and ones. Inside the computer, they take forms
-such as a high or low electrical charge, a strong or weak signal, or a
-shiny or dull spot on the surface of a CD. Any piece of discrete
-information can be reduced to a sequence of zeros and ones and thus
-represented in bits.
+Aapne kabhi socha hai CD mei data kaise store hota hai?
 
-(((binary number)))(((radix)))(((decimal number)))For example, think
-about how you might show the number 13 in bits. It works the same way
-you write decimal numbers, but instead of 10 different ((digit))s, you
-have only 2, and the weight of each increases by a factor of 2 from
-right to left. Here are the bits that make up the number 13, with the
-weights of the digits shown below them:
 
-----
-   0   0   0   0   1   1   0   1
- 128  64  32  16   8   4   2   1
-----
 
-So that's the binary number 00001101, or 8 + 4 + 1, which equals 13.
+CD mei jab data daalte hai, toh usmei chote chote pits (yaani gaddhe) ban jaate hai, jisko computer padh kar dekhta hai ki CD mei jo bits hai woh zero hai ya one.
 
-== Values ==
+Kisi bhi information ko hum zeros aur ones ke roop mei likh sakte hai. Aisa karke  hum woh information  bits mei represent kar sakte hai.
 
-(((memory)))(((volatile data storage)))(((hard drive)))Imagine a sea of
-bits. An ocean of them. A typical modern computer has more than 30
-billion bits in its volatile data storage. Nonvolatile storage (the
-hard disk or equivalent) tends to have yet a few orders of magnitude
-more.
+Chaliye, dekhte hai ki number 13 ko bits mein kaise likhenge. Jaise hum Maths mein decimal numbers likhte hai, vaise hi hum isse bhi likhenge. Lekin yaha Maths ke 10 (0-9) digits lene ki jagah hum sirf 2 digits lenge - zero aur one. 
 
-image::img/bit-sea.png[alt="The Ocean of Bits"]
+1331  ko decimal system mei hum kaise likhte hai? 
+Ise hum 10 ke powers ki sum ke form me likh sakte hain.
 
-To be able to work with such quantities of bits without getting lost,
-you can separate them into chunks that represent pieces of
-information. In a JavaScript environment, those chunks are called
-_((value))s_. Though all values are made of bits, they play different
-roles. Every value has a ((type)) that determines its role. There are
-six basic types of values in JavaScript: numbers, strings, Booleans,
-objects, functions, and undefined values.
+1000	100	10	1
+       1         3        3         1
 
-(((garbage collection)))To create a value, you must merely invoke its
-name. This is convenient. You don't have to gather building material
-for your values or pay for them. You just call for one, and _woosh_,
-you have it. They are not created from thin air, of course. Every
-value has to be stored somewhere, and if you want to use a gigantic
-amount of them at the same time, you might run out of bits.
-Fortunately, this is a problem only if you need them all
-simultaneously. As soon as you no longer use a value, it will
-dissipate, leaving behind its bits to be recycled as building material
-for the next generation of values.
+1331 = 1000x1 + 100x3 + 10x3 + 1x1
+1331 = 103x1 + 102x3 + 101x3 + 100x1
 
-This chapter introduces the atomic elements of JavaScript programs,
-that is, the simple value types and the operators that can act on such
-values.
+Yaha humne 1331 ko 10 ki powers ke form me likha hai. 103 ko 1 se multiply karke aur isi tarah 102 ko 3,  101 ko 3 aur 100 ko 1 se multiply karne ke baad sum karke hume 1331 milega.
 
-== Numbers ==
+Issi tarah hum pehle, 2 ki powers likhenge. 21, phir 4 (22 ), phir 8 (23 ), phir 16(24 ) aur jitni zaroorat ho aage badhte jaenge. 13 ki baat karein to ise hum 2 ke powers ke  sum ki form me neeche diye hue tareeke se likh sakte hain  :-
 
-(((syntax)))(((number)))(((number,notation)))Values of the
-_number_ type are, unsurprisingly, numeric values. In a JavaScript
-program, they are written as follows:
+8        4         2       1
+23      22        21      20
+ 1        1        0       1
 
-[source,javascript]
-----
-13
-----
 
-(((binary number)))Use that in a program, and it will cause the bit
-pattern for the number 13 to come into existence inside the computer's
-memory.
+13 = 8 + 4 + 1
+13 = 8x1 + 4x1 + 2x0 + 1x1
+13 = 23x1 + 22x1 + 21x0 + 20x1
 
-(((number,representation)))(((bit)))JavaScript uses a fixed
-number of bits, namely 64 of them, to store a single number value.
-There are only so many patterns you can make with 64 bits, which means
-that the amount of different numbers that can be represented is
-limited. For _N_ decimal ((digit))s, the amount of numbers that can be
-represented is 10^_N_^. Similarly, given 64 binary digits, you can
-represent 2^64^ different numbers, which is about 18 quintillion (an
-18 with 18 zeros after it). This is a lot.
+Ab aap dekhein ki 2 ki powers ke sath multiply kiye hue numbers kaunse hain. 13 ka example lein to 2 ki powers 1, 1, 0 aur 1 se multiply hui hain. To 13 ki binary representation 1101 hui. Aap yeh sab dobara padhein , kyuki yeh pehli baar mein thoda confusing ho sakta hai. z
 
-Computer memory used to be a lot smaller, and people tended to use
-groups of 8 or 16 bits to represent their numbers. It was easy to
-accidentally _((overflow))_ such small numbers—to end up with a number
-that did not fit into the given amount of bits. Today, even personal
-computers have plenty of memory, so you are free to use 64-bit chunks,
-which means you need to worry about overflow only when dealing with
-truly astronomical numbers.
+Issi tarah 97 ko bits mein kaise likhenge? . Sabse pehle hum ise 2 ki powers ke sum ke form me likhenge. . 2 ki highest power wo hogi jiski value 97 se kam hogi. Hume pata hai ki 27 = 128 aur 26 = 64. 64,  97 se chhota hai isliye 26, 2 ki highest power hogi. Ab ise aise samajhne ki koshish karein.
 
-(((sign)))(((floating-point number)))(((fractional number)))(((sign bit)))Not
-all whole numbers below 18 quintillion fit in a JavaScript number,
-though. Those bits also store negative numbers, so one bit indicates
-the sign of the number. A bigger issue is that nonwhole numbers must
-also be represented. To do this, some of the bits are used to store
-the position of the decimal point. The actual maximum whole number
-that can be stored is more in the range of 9 quadrillion (15 zeros),
-which is still pleasantly huge.
+26       25      24        23       22      21      20 
+64     32     16        8        4        2       1
+1        1       0          0        0        0       1
 
-(((number,notation)))Fractional numbers are written by using a
-dot.
+97 = 64 + 32 + 1
+97 = 64x1 + 32x1 + 16x0 + 8x0 + 4x0 + 2x0 + 1x1
+97 = 26x1 + 25x1 + 24x0 + 23x0 + 22x0 + 21x0 + 20x1
 
-[source,javascript]
-----
+Yaha humne dekha ki 2 ki powers ko 1,1,0,0,0 aur 1 se multiply kiya gya hai, isliye 97 ka bits me representation hua 110001.
+Is section mein aapne kisi bhi digit ka binary representation find out karne ka tareeka seekha. Aise hi aap 173 ko bhi binary number ki form (binary representation) mein likh sakte hain.
+Hint: 173 = 128 + 32 + 8 + 4 + 1
+Values
+Aap aise sochein ki ek samundra jis mein sirf bits hi bits hai. Ek modern computer mei 30 million yaani 3 crore se bhi jyada bits hoti hai. Javascript mei 6 tarah ki ‘data types’ hoti hai (jo bits ke roop mei store hoti hai)
+numbers
+strings
+booleans
+Objects booleans
+objects
+functions
+undefined values
+
+Hum in types ke baarein mei aage aur details mei padhenge.
+
+
+Numbers
+“Number Type” ki value number hi hoti hai. Jo ki javascript program mein aise likhi jaati hai
+>>> 13
+Isse console par likhne se number 13 ka bit representation computer memory mein  aa jaata hai.
+
+Number ko memory mei store karne ke liye Javascript 64 bits use kar sakta hai. 64 bits use karke aap 264  numbers yaani lag bhag 18,000,000,000,000,000,000 jitne bade  numbers store kar sakte hain .
+Lekin computer ki memory uska bahut chota part use karti thi aur hum apne number ko represent karne k liye 8 se 16 bits use karte the.tab bahut assani se small number ka overflow ho jata tha aur wo hamare 8 se 16 bits mei fit nahi bethate the .lekin ab aise nahi hai, apna personal computer mei bhi bahut memory hai to hum pure 64 bits use kar sakte hai,iska matlab ye hua ki ab apko small number ke overflow ke chinta karne ki jarurt nahi hai.
+Javascript number mei  keval 18 quintullion se niche  whole number hi nahi balki negative number bhi store hote hai ye sab bits ki wajah se hua.one bit kisi ek number ko represent karti hai.hum javascript mei nonwhole number ko  bhi repersent kar sakte hai, iske liye kuch bits decimal point ki position ko bhi represent karte hai.fractional number ko dot ki help se likha jata hai.
 9.81
-----
-
-(((exponent)))(((scientific notation)))(((number,notation)))For
-very big or very small numbers, you can also use scientific notation
-by adding an “e” (for “exponent”), followed by the exponent of the
-number:
-
-[source,javascript]
-----
+Bahut bade numbers ko short mei likne k liye ek scientific word use kiya jata hai iss word ko “e”(exponent)  exponent number se represent karte hai.
 2.998e8
-----
+Ko hum kholkar aise likhenge 2.998 X108 = 299800000000
+Whole number se calculation choti hoti ,according to jo humne pehle 9 quadrillion ke bare mei btaya tha.aisa  fractional number ki  calculation mei nahi hota.jaise Kabhi bhi  π (pi) decimal mei  koi finite  number nahi deta,iska matalab iski koi bhi exect value hai hi nahi, thik issi tarah jab store karne ke liye 64 bits use hoti hai tab bahut se number apni actual value kho bathate hai lekin aisa keval kuch specifice situation mei hi hota hai .yah important cheeze ye hai ki fractional digit number ko hum ko approximation value se represent karte hai ,bajaye koi exact value diye.
+Arithmetic
+Numbers mein arithmetic sabse important hai. Arithmetic operations jaise addition, multiplication, division , etc. 2 ya 2 se jyada values lete hai.’
+ Arithmetic operations solve hone ke baad ek nayi value milti hai 
 
-That is 2.998 × 10^8^ = 299,800,000.
+Jaise ki 4+5=9. 4+5 solve karne se, 9 value milti hai. 
+Ek aur example: 100 + 4 * 11. Isse khud solve karein. .
 
-(((pi)))(((number,precision of)))(((floating-point
-number)))Calculations with whole numbers (also called _((integer))s_)
-smaller than the aforementioned 9 quadrillion are guaranteed to always
-be precise. Unfortunately, calculations with fractional numbers are
-generally not. Just as π (pi) cannot be precisely expressed by a
-finite number of decimal digits, many numbers lose some precision when
-only 64 bits are available to store them. This is a shame, but it
-causes practical problems only in specific situations. The important
-thing is to be aware of it and treat fractional digital numbers as
-approximations, not as precise values.
+‘+’ , ‘*’, aur ‘/’ - inn symbols ko operators kaha jata hai. ‘+’ symbol addition ke liye,  ‘*’ multiplication ke liye, aur ‘/’ symbol divide karne ke use hota hai. . Operator ko apply karne ke liye operator ko do value ke beech rakhte hai aur us operation ke result se humein ek nayi value milti hai. 
 
-=== Arithmetic ===
+Upar jo expression khud solve karne ko diya hai , kya uska matlab “100 me 4 add kar ke 11 se multiply karna hai , ya fir phele “4 ko 11 se multiply kar ke phir 100 add karna hai ” ?  Apne agar socha ki pehle multiplication hogi to aap sahi hain lekin aap is expression ko bracket laga ke change bhi kar sakte hain  jisse phele addition hona chahiye ya multiplication, change ho jaega.
 
-(((syntax)))(((operator)))(((binary
-operator)))(((arithmetic)))(((addition)))(((multiplication))) The main
-thing to do with numbers is arithmetic. Arithmetic operations such as
-addition or multiplication take two number values and produce a new
-number from them. Here is what they look like in JavaScript:
+Ab neeche diye expression ko dekhein aur sochein ki ise kaise solve karenge!
 
-[source,javascript]
-----
-100 + 4 * 11
-----
+Expression-1: (100 + 4) * 11	
 
-(((operator,application)))(((asterisk)))(((plus
-character)))(((pass:[*] operator)))(((+ operator)))The `+` and `*`
-symbols are called _operators_. The first stands for addition, and the
-second stands for multiplication. Putting an operator between two
-values will apply it to those values and produce a new value.
+Jab bhi hum kisi expression ko solve karte hai to humei “BODMAS” rule ki jarurat padti hai. Toh aaiye hum pehle BODMAS ko samjhte hain. BODMAS ko break karein to hume milta hai:
 
-(((grouping)))(((parentheses)))(((precedence)))Does the example mean
-“add 4 and 100, and multiply the result by 11”, or is the
-multiplication done before the adding? As you might have guessed, the
-multiplication happens first. But as in mathematics, you can change
-this by wrapping the addition in parentheses.
+B = Brackets
+O = Order(i.e. Powers,Square Roots, etc.)
+D = Division
+M = Multiplication
+A = Addition
+S = Subtraction
 
-[source,javascript]
-----
-(100 + 4) * 11
-----
+Ek saath jab kai operations hote hai toh hum “BODMAS”  ka use karke solve karte hai Sabse pehle kisi bhi expression mei brackets ko solve karte hai. Phir agar usmei koi powers ya square roots jaise expression  hai to unko solve karte hai. Phir hum division ko solve karte hai. Uske baad multiply ko solve karte hai aur sabse aakhir mei hum addition aur subtraction ko solve karte hai.
 
-(((dash character)))(((slash
-character)))(((division)))(((subtraction)))(((minus)))(((-
-operator)))(((/ operator)))For subtraction, there is the `-` operator,
-and division can be done with the `/` operator.
+Isko aur ache se samjhne ke liye kuch example dekhte hai.
 
-When operators appear together without parentheses, the order in which
-they are applied is determined by the _((precedence))_ of the
-operators. The example shows that multiplication comes before
-addition. The `/` operator has the same precedence as `*`. Likewise
-for `+` and `-`. When multiple operators with the same precedence
-appear next to each other, as in `1 - 2 + 1`, they are applied left
-to right: `(1 - 2) + 1`.
+7 + (6 × 25 + 3)
+7 + (150 + 3)
+7 + (153)
+160
 
-These rules of precedence are not something you should worry about.
-When in doubt, just add parentheses.
+Ab iss rule ko use karte hue upar diye Expression-1 ko solve karein.
 
-(((modulo operator)))(((division)))(((remainder operator)))(((%
-operator)))There is one more arithmetic operator, which you might not
-immediately recognize. The `%` symbol is used to represent the
-_remainder_ operation. `X % Y` is the remainder of dividing `X` by
-`Y`. For example, `314 % 100` produces `14`, and `144 % 12` gives `0`.
-Remainder's precedence is the same as that of multiplication and
-division. You'll often see this operator referred to as _modulo_,
-though technically _remainder_ is more accurate.
+Iske baad hum  ek aur arithmetic operator ke baare me bat karenge jise hum remainder operator kehte hain.  “%”  symbol remainder operator ke liye use kiya jaata hai.  
 
-=== Special numbers ===
+30 / 3 = 10, remainder 0
+ 
+35 / 3 = 11, remainder 2
 
-(((number,special values)))There are three special values in
-JavaScript that are considered numbers but don't behave like normal
-numbers.
+Divide karne ke baad jo remainder bachta hai usko programming language mei modulus bolte hai or uske liye % ka symbol ka use kiya jaata hai.
 
-(((infinity)))The first two are `Infinity` and `-Infinity`, which
-represent the positive and negative infinities. `Infinity - 1` is
-still `Infinity`, and so on. Don't put too much trust in
-infinity-based computation. It isn't mathematically solid, and it will
-quickly lead to our next special number: `NaN`.
+Special numbers
+JavaScript mei kuch aisi value hoti hai jo number to hote hai, lekin woh normal number ki tarah behave nahi karte.
 
-(((NaN)))(((not a number)))(((division by zero)))`NaN` stands for “not
-a number”, even though it is a value of the number type. You'll get
-this result when you, for example, try to calculate `0 / 0` (zero
-divided by zero), `Infinity - Infinity`, or any number of other
-numeric operations that don't yield a precise, meaningful result.
+Jaise pehli 2 value hai Infinity (∞) and - Infinity (-∞) jo positive aur negative infinities represent karte hai. “∞ - 1” bhi infinity hota hai, Isko aise samjho ki maan lo hamare paas infinite items hai. Un mei se ek do cheezein hatane par bhi, hamare paas infinite items hi bachenge.
 
-== Strings ==
+Hume infinity-based calculations par jayda wishwas nahi karna hai. Javascript mei yeh maths ka koi solid rule follow nahi karta. Ab hum apne dusre special number ki ore jayenge jo ki NaN ke baarein mei padhenge.
 
-(((syntax)))(((text)))(((character)))(((string,notation)))(((single-quote
-character)))(((double-quote character)))(((quotation mark)))The next
-basic data type is the _((string))_. Strings are used to represent
-text. They are written by enclosing their content in quotes.
+NaN ka matlab “Not a Number”  hota hai, vaise ye to ek number ka type hai lekin NAN ka matlab not a number hota hai. Agar humne 0/0, ∞ - ∞, ∞*3 kiya toh meaningful result nahi aata, isko javascript mei “not a number” bolte hai.
 
-[source,javascript]
-----
-"Patch my boat with chewing gum"
-'Monkeys wave goodbye'
-----
+Strings
 
-Both single and double quotes can be used to mark strings as long as
-the quotes at the start and the end of the string match.
+Agla basic data type string hai. Strings ko hum text ke liye use karte hai. String ko likhne ke liye hum quotes(“) use karte hai. String ki value quotes ke andar likhte hai. Isse Javascript samajh jata hai, ki jo quotes ke andar hai - woh string hai.
 
-(((line break)))(((newline character)))Almost anything can be put
-between quotes, and JavaScript will make a string value out of it. But
-a few characters are more difficult. You can imagine how putting
-quotes between quotes might be hard. _Newlines_ (the characters you
-get when you press Enter) also can't be put between quotes. The string
-has to stay on a single line.
+Example 
+“Ye ek string hai”
+“Ye string quotes mein hai”
 
-(((escaping,in strings)))(((backslash character)))To make it possible to include
-such characters in a string, the following notation is used: whenever
-a backslash (`\`) is found inside quoted text, it indicates that the
-character after it has a special meaning. This is called _escaping_
-the character. A quote that is preceded by a backslash will not end
-the string but be part of it. When an `n` character occurs after a
-backslash, it is interpreted as a newline. Similarly, a `t` after a
-backslash means a ((tab character)). Take the following string:
+Strings ko likhne ke liye hum single quotes( ‘ ) ya double quotes ( “ ) dono ko use kar sakte hai. Par starting ka aur end ke quotes same hi  hona chahiye.
+```````````	
+“ye ek string hai ”        ‘ye ek string hai ‘   ye sahi tareeka hai 
 
-[source,javascript]
-----
-"This is the first line\nAnd this is the second"
-----
+Hum quotes ke andar kuch bhi value daal sakte hai. JavaScript usse strings ki taraha legi. Par strings me kuch value dalna thoda muskil ho sakta hai. Jaise aap soche ki string mei quotes kaise daalenge?
 
-The actual text contained is this:
+Jaise
+>>> “string ko double quotes (“) mei likh sakte ho”
+Ismei problem samajh aayi?
 
-----
-This is the first line
-And this is the second
-----
+Javascript confuse ho jayega, aur samjhega “string ko double quotes (“ string hai. Uske aage jo likha hai, Javascript ko error lagega .
 
-There are, of course, situations where you want a backslash in a
-string to be just a backslash, not a special code. If two backslashes
-follow each other, they will collapse together, and only one will be
-left in the resulting string value. This is how the string “++A newline
-character is written like "\n".++” can be expressed:
+Aise special (yaani vichitra) characters ke liye Javascript mei alag tareeka use kiya jaata hai. Jaise ki jab hum string ke andar backslash(\) use karte hai to anumaan laga sakte hai ki  iske bad koi special character likha jayega.
 
-[source,javascript]
-----
-"A newline character is written like \"\\n\"."
-----
+Jab \n likha jata hai toh iska matlab hota hai newline i.e. nayi line. Jab \t likha jaata hai, toh iska matlab hota hai tab. Dhyaan rakhe ki \ character ko backslash character bolte hai. Ab aap yeh sochein ki kisi ko agar backslash character likhna hai toh kaise likhega? Backslash character khud ek special character hai. Iske liye aapko \\ likhna hoga.
 
-(((+ operator)))(((concatenation)))Strings cannot be divided,
-multiplied, or subtracted, but the `+` operator _can_ be used on them.
-It does not add, but it __concatenates__—it glues two strings together.
-The following line will produce the string `"concatenate"`:
+"Yeh first line hai \n aur yeh second line hai”
+Jo print karne par aisa dikhega: 
 
-[source,javascript]
-----
-"con" + "cat" + "e" + "nate"
-----
+Yeh first line hai
+aur yeh second line hai
 
-There are more ways of manipulating strings, which we will discuss
-when we get to methods in link:04_data.html#methods[Chapter 4].
+Toh agar aapko yeh print karana hai -  “isme ek newline character likha hua hai "\n".” Dhyaan se dekhiye isme kaun kaun se special characters hai - “, \ aur “. Sab special characters se pehle backslash (yaani \) character daalna padega.
 
-== Unary operators ==
 
-(((operator)))(((typeof operator)))(((type)))Not all operators are
-symbols. Some are written as words. One example is the `typeof`
-operator, which produces a string value naming the type of the value
-you give it.
+>>> “isme ek newline character likha hua hai \"\\n\".”
+Output:  isme ek newline character likha hua hai “\n”.
 
-[source,javascript]
-----
+Strings par hum divide ( / ), multiply ( * ) aur subtract ( - )  operators ka use nahi kar sakte. Par hum string me addition ( + ) operator ka use strings par kar sakte hai. + operator ka use karke hum do ya do se jada string ko ek sath concatenate (yaani chipka) sakte hai. Isko samjhne ke liye yeh example dekho -
+>>> "con" + "cat" + "e" + "nate" 
+Output:  "concatenate"
+
+Unary operators
+Saare operator symbols nahi hote iska matlab ye hai ki kuch operator words ke bhi form mein hote hai. Jaise neeche diya hua example  aisa hi ek operator  hai
+
 console.log(typeof 4.5)
 // → number
 console.log(typeof "x")
 // → string
-----
 
-[[console.log]]
+Jaise aapne dekha ye example ek number type ka input le kar ek string type ki value produce kar rha hai par sochiye isne string type ki value kyu li.
+Ye ek operator ki vajah se hua jiska naam “typeof” hai  jo ki yha ek word ko operator ki tarah use kar rha hai. Isse wo uss value ka type yaani 4.5 ka type print kar dega . 
 
-(((console.log)))(((output)))(((JavaScript console)))We will use
-`console.log` in example code to indicate that we want to see the
-result of evaluating something. When you run such code, the value
-produced should be shown on the screen, though how it appears will
-depend on the JavaScript environment you use to run it.
+Hum apne example code ka result dekhne ke liye console.log ka use karenge. Jab aap yeh code run karoge to value screen par show honi chahiye, lekin jo value screen par dikhegi  wo javscript ke environment par depend karegi ki javascript uss value ko kese dikhata hai.
+Humne yaha dekha ki  saare operaters do  values pe operate hote hai (e.g. 3+4), lekin keval typeof ek aisa operater hai jo ek value pe operate hota hai. Jo operater  2 value pe operate hote hai wo binary operators kahlate hai, jabaki 1 value wale  operate ko unary operators kehte hai . Dhayaan dein ki  minus oprater ko hum unary and binary operater dono par  use kar sakte hai Jaise yeh example dekhiye ,
 
-(((negation)))(((- operator)))(((binary operator)))(((unary
-operator)))The other operators we saw all operated on two values, but
-`typeof` takes only one. Operators that use two values are called
-_binary_ operators, while those that take one are called _unary_
-operators. The minus operator can be used both as a binary operator
-and as a unary operator.
-
-[source,javascript]
-----
 console.log(- (10 - 2))
 // → -8
-----
+Boolean values
+Kabhi kabhi hume aisa answer chahiye hota hai jiski do hi possibilities ho  jaise “yes” aur “no” yaa  “on” aur “off”. Iske liye javascript mei boolean type hota hai jo keval do possible results deta hai, true aur false (jinhe  simply true aur false hi likhte hai).
+Comparisons
+Neeche diye examples mein  Boolean values produce karne ke  tareeke diya hua ha:
 
-== Boolean values ==
-
-(((Boolean)))(((operator)))(((true)))(((false)))(((bit)))Often,
-you will need a value that simply distinguishes between two
-possibilities, like “yes” and “no” or “on” and “off”. For this,
-JavaScript has a _Boolean_ type, which has just two values: true and
-false (which are written simply as those words).
-
-=== Comparisons ===
-
-(((comparison)))Here is one way to produce Boolean values:
-
-[source,javascript]
-----
 console.log(3 > 2)
 // → true
 console.log(3 < 2)
 // → false
-----
 
-(((comparison,of numbers)))(((> operator)))(((< operator)))(((greater
-than)))(((less than)))The `>` and `<` signs are the traditional
-symbols for “is greater than” and “is less than”, respectively. They
-are binary operators. Applying them results in a Boolean value that
-indicates whether they hold true in this case.
 
-Strings can be compared in the same way.
 
-[source,javascript]
-----
+< symbol -  “se chhota hai” ki jagah aur  > symbol - “se bada hai” ki jagah hum bachpan se use karte aa rahe hain. Doosre Shabdon me “Chhota hai” ka symbol < aur “Bada hai” ka symbol hai > hota hai. .Yeh  ek binary operator hai yani ise apply karne ke liye hume do values chaiye. Inn symbols ko use karne par result ek boolean  value aati hai jisse yeh decide hota  hai ki condition true hai ya false.   
+Same issi tarah se hum strings ki values bhi compare kar sakte hai. For example:
+
 console.log("Aardvark" < "Zoroaster")
 // → true
-----
 
-(((comparison,of strings)))The way strings are ordered is more or less
-alphabetic: uppercase letters are always “less” than lowercase ones,
-so `"Z" < "a"` is true, and non-alphabetic characters (!, -, and so on)
-are also included in the ordering. The actual comparison is based on
-the _((Unicode))_ standard. This standard assigns a number to
-virtually every character you would ever need, including characters
-from Greek, Arabic, Japanese, Tamil, and so on. Having such numbers is
-useful for storing strings inside a computer because it makes it
-possible to represent them as a sequence of numbers. When comparing
-strings, JavaScript goes over them from left to right, comparing the
-numeric codes of the characters one by one.
+console.log("Rahul" < “rahul")
+// → true
 
-(((equality)))(((>= operator)))(((pass:[<=] operator)))(((==
-operator)))(((!= operator)))Other similar operators are `>=` (greater
-than or equal to), `<=` (less than or equal to), `==` (equal to), and
-`!=` (not equal to).
 
-[source,javascript]
-----
+String me chhota ya bada compare  karne ka alag tarika hota hai , aur choti abc hamesa badi ABC se badi hoti hai. 
+
+Par actual comparison ke hum unicode standard ko use karenge, yeh standard  har ek character ko ek number value deta hai jise use karke hum strings ko compare kar sakte hain.  Aur character greek, arabic, japanese, tamil jaisi languages se liye jata hai( jaise maths mei hum “pie” padte hai jiski value “ 22/7” hoti hai). 
+Computer mei hume kuch string ki value store karne ki  zarurat padati hai to hum  aise numbers ka  use kar sakte hai jisse hum asani se strings ko number ke sequence mein represent kar sakte hain. .
+Jab hum do  strings ko compare karte hai to  javascript har character ko  left to right padti hai aur uske numeric code ko one by one compare karti hai. 
+
+
+
+Aur dusre operator bhi hain jaise >=(bada  ya equal hai), <=(chota ya equal hai),==(equal hai) and !=(equal nahi hai ).  Neeche diya hua example dekhiye
+
+
 console.log("Itchy" != "Scratchy")
 // → true
-----
 
-(((comparison,of NaN)))(((NaN)))There is only one value in JavaScript
-that is not equal to itself, and that is `NaN`, which stands for “not
-a number”.
+Jaisa ki obvious hai ki “Itchy” “Scratchy” ke equal nahi hai, Inpar equal nahi hai (!=) operator use karne se result true yaani sahi aata hai.
 
-[source,javascript]
-----
+Puri javascript mei ek value hai jo apne aap se equal nahi hoti woh hai  NaN, jiska matlab hai “ Not for  Number”. For example:
+
+
 console.log(NaN == NaN)
 // → false
-----
 
-`NaN` is supposed to denote the result of a nonsensical computation,
-and as such, it isn't equal to the result of any _other_ nonsensical
-computations.
+Basically NaN meaningless computation ko denote karta hai,aur yeh kisi dusri meaningless computation ke equal nahi hota .
 
-=== Logical operators ===
 
-(((reasoning)))(((logical operators)))There are also some operations
-that can be applied to Boolean values themselves. JavaScript supports
-three logical operators: _and_, _or_, and _not_. These can be used to
-“reason” about Booleans.
 
-(((&& operator)))(((logical and)))The `&&` operator represents logical
-_and_. It is a binary operator, and its result is true only if both
-the values given to it are true.
+Logical operators
 
-[source,javascript]
-----
+Yahan hum kuch aise operators  use karenge jo boolean value par hi apply kiye ja sakte hai aur boolean result hi dete hai, iske liye javascript mein humein teen logical operators diye hue hai jaise -  and, or aur not. 
+“and” operator ko represent karne k liye hum “&&” symbol use karte hai.  Ye ek binary operator hai aur iska result true tabhi aata hai jab di hui dono condition true ho. Iska example neeche diye hue code me diya gya
+
+
 console.log(true && false)
 // → false
 console.log(true && true)
 // → true
-----
 
-(((|| operator)))(((logical or)))The `||` operator denotes logical
-_or_. It produces true if either of the values given to it is true.
+Upar example mein aap dekh sakte hain ki agar dono conditions true nahi hai to result false hoga.
 
-[source,javascript]
-----
-console.log(false || true)
-// → true
+“Or” operator ko hum “||“ symbol se denote karte hain.  Agar di hui dono conditions mei se koi bhi ek condition true hogi to result mei true hi ayega. - Yaani jab dono conditions false hogi tabhi  result false ayega otherwise result true ayega.
+
+
 console.log(false || false)
 // → false
-----
+console.log(true && false)
+// → true 
 
-(((negation)))(((! operator)))_Not_ is written as an exclamation mark
-(`!`). It is a unary operator that flips the value given to it—`!true`
-produces `false` and `!false` gives `true`.
+Upar example mein aap dekh sakte hain ki agar dono conditions me se ek bhi true to result true hoga otherwise agar dono conditions false hui to result false hoga.
 
-(((precedence)))When mixing these Boolean operators with arithmetic
-and other operators, it is not always obvious when parentheses are
-needed. In practice, you can usually get by with knowing that of the
-operators we have seen so far, `||` has the lowest precedence, then
-comes `&&`, then the comparison operators (`>`, `==`, and so on), and
-then the rest. This order has been chosen such that, in typical
-expressions like the following one, as few parentheses as possible are
-necessary:
+ Teesra logical operator hai “Not” jisko hum exclamation mark(!) se denote karte hain.Yeh ek aisa unary operator hai jo current value ko ulta kar deta hai. For example “!true” ka value hoga “false” aur “!false” ka result hoga “true”. 
 
-[source,javascript]
-----
+
+Jab hum inn boolean operator ko kisi dusre operators ya arithmetic operator ke saath use karte hai, tab yeh jaruri nahi hota ki hum brackets use karein -  hum kar bhi sakte hai aur nahi bhi.
+Aamtaur  par humne practice karte hue yeh dekha hai ki || operator ki sabse kam preference hoti hai aur fir && aur  fir comparison operator         (<, >, ya ==) ko preference milti hai aur issi tarah baki ke operators ki bhi defined preference  hai. Inki preference order iss hisaab se bnayi gayi hai ki brackets ke usage ke bina bhi expression evaluate ho jaye. For example: .
+
+
+
 1 + 1 == 2 && 10 * 10 > 50
-----
 
-(((conditional execution)))(((ternary operator)))(((?:
-operator)))(((conditional operator)))(((colon character)))(((question
-mark)))The last logical operator I will discuss is not unary, not
-binary, but _ternary_, operating on three values. It is written with a
-question mark and a colon, like this:
+Upar diye expression ko operators ki preference ke hisaab se evaluate kar sakte hain.
 
-[source,javascript]
-----
+Lastly hum wo  logical operator discuss karenge jo na to unary operator hai na to binary hai lekin wo ternary operator hai, jo teen operating values par execute hota hai.  Yeh ek  question mark(?) aur colon(:) use karke  likha jata hai. For example:
+
+
 console.log(true ? 1 : 2);
 // → 1
 console.log(false ? 1 : 2);
 // → 2
-----
 
-This one is called the _conditional_ operator (or sometimes just
-_ternary_ operator since it is the only such operator in the
-language). The value on the left of the question mark “picks” which of
-the other two values will come out. When it is true, the middle value
-is chosen, and when it is false, the value on the right comes out.
+Isse conditional operator kahate hai (aur kabhi kabhi isse ternary operator bhi kehte hai).  Question mark ke left wali value  hi decide  karti hai ki dusri dono value mein se kon si value result hogi.  “?” mark ke left mein value agar  true hui to “:” ke left wala final result hoga aur agar left mein value false hui to “:” ke right wala final result hoga.   .  
 
-== Undefined values ==
+Undefined values
+Yaha hum aisi do special values ke bare mein padhenge jo meaningful value ke na hone ko  darshaate hai, wo dono special values hain “null” aur “undefined”.  Yeh aisi values hain jo  apne paas  kuch information store nahi karte. 
 
-(((undefined)))(((null)))There are two special values, written `null`
-and `undefined`, that are used to denote the absence of a meaningful
-value. They are themselves values, but they carry no
-information.
+Aapne Javascript language mein bhut sare operations dekhe honge ya dekhenge jo koi meaningful  value produce nahi karte. Ye undefined value produce karte kyunki inhe kuch na value to return karni hi hai. .
 
-Many operations in the language that don't produce a meaningful value
-(you'll see some later) yield `undefined` simply because they have to
-yield _some_ value.
+Javascript design ke ander null and undefined values ka  alag alag matlab hona Javascript ke design ka problem hai aur zyadatar in dono me koi fark nahi hota  lekin kuch cases jaha  hume inn dono values ke bare mein dekhna pade tab in dono koi ek doosre ki jagah use kar sakte hain.      
 
-The difference in meaning between `undefined` and `null` is an accident
-of JavaScript's design, and it doesn't matter most of the time. In the cases
-where you actually have to concern yourself with these values, I
-recommend treating them as interchangeable (more on that in a moment).
 
-== Automatic type conversion ==
+Automatic type conversion
 
-(((NaN)))(((type coercion)))In the introduction, I mentioned that
-JavaScript goes out of its way to accept almost any program you give
-it, even programs that do odd things. This is nicely demonstrated by
-the following expressions:
 
-[source,javascript]
-----
+Introduction mein humne discuss kiya tha ki JavaScript zyada se programs ko run kar deta hai chahe usse ajeeb cheezein hi kyu na ho rahi ho!  Chaliye kuch examples se ise samajhte hai.
+
 console.log(8 * null)
 // → 0
 console.log("5" - 1)
@@ -498,125 +303,74 @@ console.log("five" * 2)
 // → NaN
 console.log(false == 0)
 // → true
-----
 
-(((+ operator)))(((arithmetic)))(((pass:[*] operator)))(((-
-operator)))When an operator is applied to the “wrong” type of value,
-JavaScript will quietly convert that value to the type it wants, using
-a set of rules that often aren't what you want or expect. This is
-called _((type coercion))_. So the `null` in the first expression becomes
-`0`, and the `"5"` in the second expression becomes `5` (from string
-to number). Yet in the third expression, `+` tries string
-concatenation before numeric addition, so the `1` is converted to
-`"1"` (from number to string).
 
-(((type coercion)))(((number,conversion to)))When something that
-doesn't map to a number in an obvious way (such as `"five"` or
-`undefined`) is converted to a number, the value `NaN` is produced.
-Further arithmetic operations on `NaN` keep producing `NaN`, so if you
-find yourself getting one of those in an unexpected place, look for
-accidental type conversions.
 
-(((null)))(((undefined)))(((comparison,of undefined values)))(((==
-operator)))When comparing values of the same type using `==`, the
-outcome is easy to predict: you should get true when both values are
-the same, except in the case of `NaN`. But when the types differ,
-JavaScript uses a complicated and confusing set of rules to determine
-what to do. In most cases, it just tries to convert one of the values
-to the other value's type. However, when `null` or `undefined` occurs
-on either side of the operator, it produces true only if both sides
-are one of `null` or `undefined`.
 
-[source,javascript]
-----
+Jaisa ki humne ab tak padha hai ki different operators different type ki values par apply hote hai par  jab  JavaScript me operators ko galat type ki values par apply kiya jata hai tab Javascript use apne hisaab se (Javascript ke internal rules use karke) , kisi type me convert kar deta hai aur phir unn values par operators ko apply karta hai. Is type ko transform karne ke process ko coercion kehte hain.  Isse kayi aise results mil sakte hai jinke baare me aapne kabhi socha na ho. Jaise ki upar pehle example me null ko 0 me ‘coerce’ (convert) kar ke uspe multiply operator use hua hai jisse output 0 aata hai. Issi tarah doosre example me “5” jo ki ek string hai wo ek number me coerce ho gaya, jabki third example mein numerical 1, string type me convert hokar “1” ban gya hai jispe + operation lagne ke baad string concatenation ho gaya. 
+
+Use ese tarike se chalta hai jaisa shayad apne wo socha na ho. Isko  ko coercion bolte hai. Jesa ki apne phele exaple me dekha null ko 0 ki tarha use kiya hua hai. Or second example me “5”  yani ek string value ko ek string ki tarha use kiya hua hai. Or third example me “5” yani ek string value ko 1 yani ek integer value ko ek sath jod diya hai to iss example me 1 ko yani integer value ko string ki tarha use kiya hia 
+
+
+
+Jab koi cheej sahi tareeke se  number me represent  nahi hoti (for example: “five” ya undefined) aur use hum number me convert karne ki koshish karte hain tab  wo NaN value produce  karta hai.  Agar apko aisa kuch result milta hai, tab apni type conversions ko dhyaan se dekhein ki kahin kuch gadbad to nahi hai. 
+
+
+
+
+
+Ek jaisi data types ki values ko == ka use kar ke compare karna aur answer ka andaaza lagana  easy hota hai. Yaani  jab == operator ke  dono sides ki values baraabar hongi to result true hoga. Par NaN par == operator lagaane par aisa  nahi hoga. Agar operator ke dono sides ki values ka data type alag hota hai to  JavaScript confuse ho jata hai ki kya jaaye. . Jadatar cases me   JavaScript ek tarha (ek type) ki value ko dusri tarha ki value mai change karne ki kosish karta hai aur phir uspe operator apply hota hai. Par agar null aur undefined ka case dekhein to == operator true output tabhi dega jab dono side same ya in dono me se koi ek value ho. For example: 
+
 console.log(null == undefined);
 // → true
 console.log(null == 0);
 // → false
-----
 
-That last piece of behavior is often useful. When you want to test
-whether a value has a real value instead of `null` or `undefined`, you
-can simply compare it to `null` with the `==` (or `!=`) operator.
 
-(((type coercion)))(((Boolean,conversion to)))(((=== operator)))(((!==
-operator)))(((comparison)))But what if you want to test whether
-something refers to the precise value `false`? The rules for
-converting strings and numbers to Boolean values state that `0`,
-`NaN`, and the empty string (`""`) count as `false`, while all the
-other values count as `true`. Because of this, expressions like `0 ==
-false` and `"" == false` are also true. For cases like this, where you
-do _not_ want any automatic type conversions to happen, there are two
-extra operators: `===` and `!==`. The first tests whether a value is
-precisely equal to the other, and the second tests whether it is not
-precisely equal. So `"" === false` is false as expected.
 
-I recommend using the three-character comparison operators defensively to
-prevent unexpected type conversions from tripping you up. But when you're
-certain the types on both sides will be the same, there is no problem with
-using the shorter operators.
+Jo upar diya hua behavior hai wo jadatar useful hota hai. Jab aap test karna chahte hai ki jo value hai wo real hai ya nhi, to iske liye aap usse null operator ke sath compare kar sakte hai   == (or !=) .
 
-=== Short-circuiting of logical operators ===
 
-(((type coercion)))(((Boolean,conversion to)))(((operator)))The
-logical operators `&&` and `||` handle values of different types in a
-peculiar way. They will convert the value on their left side to
-Boolean type in order to decide what to do, but depending on the
-operator and the result of that conversion, they return either the
-_original_ left-hand value or the right-hand value.
+Par jab aap check karna chahte ho ki koi value exact hai ya nhi?. Numbers or string ko Boolean value me change karne ke rule me 0, NaN, aur khali string(“”) ka false count karta hai, jabki others value ko true count karta hai. Iske waje se, ese expressions  me 0 == false aur "" == false true yeh true honge. Ese cases me, agar aap chahte hai  ese automatic type conversions na ho, iske liye two opertors hai:  === and !==.  Jo pehla hai wo check karta hai ki value puri tarha se baki ki tarha hai. Aur jo dusra hai wo check karta hai ki value baki ki tarha nhi hai 
 
-(((|| operator)))The `||` operator, for example, will return the value
-to its left when that can be converted to true and will return the
-value on its right otherwise. This conversion works as you'd expect
-for Boolean values and should do something analogous for values of
-other types.
 
-[source,javascript]
-----
+
+Islye aap tin character comparison use krna taki aap unexpected type conversions hone se rok sake aur aap isse paresan na ho paresan na ho . par jab ap sure(confirm) ho ki dono side ki ka type same hai to, to shorter operators ko use karne me bhi koi problem nhi hai.
+
+
+
+Short-circuiting of logical operators
+Logical operators && and || ka  alag data type ki values ko handle  karne ke tareeke  kaafi alag hain . Ye apne left side ki value ko khud se value ke hisaab se set kar dete hai (Boolean data type me convert karte hain jisse left hand side ya right hand side ki hi values aaye), lekin ye operator aur uske result pe depend karta hai ki kya result ayega ki original left hand value ayegi ya right hand value.
+
+
+Jaise neeche diya gya example dekhein- jab  || operator apne left side ki value ko true mei convert karega tab wo left value return(output) karega aur otherwise apne right ki value return krega.aisa aap boolean values se expect karte hai ye conversion waise hi kaam karta hai, aur kuch dusre value ke according similar value me coerce karne ki koshish karta hai.
+
+
+
 console.log(null || "user")
 // → user
 console.log("Karl" || "user")
 // → Karl
-----
 
-(((default value)))This functionality allows the `||` operator to be
-used as a way to fall back on a default value. If you give it an
-expression that might produce an empty value on the left, the value on
-the right will be used as a replacement in that case.
+|| operator ko hum as a backup use kar sakte hai jisse ek default value to humein milegi hi. For example upar doosre line ke code me  null || “user”  expression se operator ke left mein empty value produce hogi, aur right side ki value uss value ko replace kregi matlab right value ke hissab se wo left side ki value set karega.  
 
-(((&& operator)))The `&&` operator works similarly, but the other way
-around. When the value to its left is something that converts to
-false, it returns that value, and otherwise it returns the value on
-its right.
 
-(((short-circuit evaluation)))Another important property of these two
-operators is that the expression to their right is evaluated only when
-necessary. In the case of `true || X`, no matter what `X` is—even if
-it's an expression that does something __terrible__—the result will be
-true, and `X` is never evaluated. The same goes for `false && X`,
-which is false and will ignore `X`. This is called _short-circuit
-evaluation_.
+Jaise humne yaha || operator ka use karna seekha  waise hi hum && operator ka bhi use karna  seekhenge , fark sirf itna hai ki  && operator ka use || operator se bilkul ulta hai. Pehle humne padha hai ki || operator apne dono side ki kisi bhi value ke true hone par output true deta hai jabki && operator apne dono side ki value agar true hai tabhi output true deta hai. Kuch cases aise bhi hote hai jab operator ke left side  ki value agar coerce karke false banti hai to ye use return karta hai otherwise wo operator ke right side wali value return karta hai.  
 
-(((ternary operator)))(((?: operator)))(((conditional operator)))The
-conditional operator works in a similar way. The first expression is
-always evaluated, but the second or third value, the one that is not
-picked, is not.
 
-== Summary ==
+ Dono operators ki ek important property hai ki right side ka expression tab hi coerce hokar change hota hai jab uski jarurat ho. Jaise ye case dekhein  “true || X” iss expression mein  X ki value kuch bhi ho issse koi fark nahi padta chaahe usse koi galat cheez hi ho rahi ho  answer hamesha true hi hoga.  X kabhi bhi calculate nahi hoga.  Jaise iss example mein || operator ko apne left side me true dikhne par wo wahi ruk gay aur isse output produce hua true.  .  
 
-We looked at four types of JavaScript values in this chapter: numbers,
-strings, Booleans, and undefined values.
+Issi tarike se && operator ka bhi us
+e kiya jata hai aur ismei bhi && operator jaise hi apne left side par false value dekhta hai ye hamesha X ki value ko ignore kar deta hai. Dhayan rakhein ki || operator apne left side par false ki bajaaye true dekhta hai.  Iss poore process ko short_circuit evaluation kahte hai.    
 
-Such values are created by typing in their name (`true`, `null`) or
-value (`13`, `"abc"`). You can combine and transform values with
-operators. We saw binary operators for arithmetic (`+`, `-`, `*`, `/`,
-and `%`), string concatenation (`+`), comparison (`==`, `!=`, `===`,
-`!==`, `<`, `>`, `<=`, `>=`), and logic (`&&`, `||`), as well as
-several unary operators (`-` to negate a number, `!` to negate
-logically, and `typeof` to find a value's type) and a ternary
-operator (`?:`) to pick one of two values based on a third value.
 
-This gives you enough information to use JavaScript as a pocket
-calculator, but not much more. The
-link:02_program_structure.html#program_structure[next chapter] will
-start tying these expressions together into basic programs.
+
+Thik issi tarah conditional operator bhi use kiye jate hai.  First value hamesha pehle evaluate hoti hai aur second or third values ko wo tabhi consider karta hai jab unki zarurat ho.
+
+
+
+
+Summary
+Humne iss chapter me 4 tarah ki values ke baare me padha - numbers, strings, Booleans, aur  undefined values.
+
+Inhe hum inke type ka naam likhkar (e.g. true ya null ) ya inki value likhkar (e.g. 13 ya “abc) define kar sakte hain. . Operators ka use kar ke values ko combine ya transform bhi kar sakte hai. Humne kuch aur binary operators ko bhi dekha. For example,   Arithmetic operators (+, -, *, /, and %), String concatenation operator ( + ), string ko ek sath chipakne ke liye, or baaki doosri comparisons ke liye (==, !=, ===,!==, <, >, <=, >=), and logic test karne ke liye (&& , ||) ka usage jaana. 

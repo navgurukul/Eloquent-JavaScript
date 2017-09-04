@@ -14,17 +14,23 @@ relevant as the question of whether Submarines Can Swim.
 ____
 
 (((artificial intelligence)))(((Dijkstra+++,+++ Edsger)))(((project
-chapter)))(((reading code)))(((writing code)))In “project” chapters,
+chapter)))(((reading code)))(((writing code)))
+In “project” chapters,
 I'll stop pummeling you with new theory for a brief moment and
 instead work through a program with you. Theory is indispensable when
 learning to program, but it should be accompanied by reading and
 understanding nontrivial programs.
-
 (((artificial life)))(((electronic life)))(((ecosystem)))Our
 project in this chapter is to build a virtual ecosystem, a little
 world populated with ((critter))s that move around and struggle for
 survival.
 
+
+//** HINDI **//
+Project chapter mein hum theory pe kam karne ki bejaye direct program pe kam karenge.Theory bahut important hai program likhne k liye lekin jab hum bahut sare alag alag mushkil mushkil program ko padte hai aur smjhte hai tab hum theory ko ache se smjh pate hia aur program likh pate hai.
+Iss chapter mei ek virtual ecosystem build karna ya banana humara project hai.Iss chote se world mei bahut sare animals aise hi ghum rhe hai aur apni life jeene k liye struggle kar rhe hai.
+
+__________________________________________________________________________________________finish
 == Definition ==
 
 (((dimensions)))(((electronic life)))To make this
@@ -32,17 +38,22 @@ task manageable, we will radically simplify the concept of a
 _((world))_. Namely, a world will be a two-dimensional ((grid)) where
 each entity takes up one full square of the grid. On every _((turn))_,
 the critters all get a chance to take some action.
-
 (((discretization)))(((simulation)))Thus, we chop both time and space
 into units with a fixed size: squares for space and turns for time. Of
 course, this is a somewhat crude and inaccurate ((approximation)). But
 our simulation is intended to be amusing, not accurate, so we can
 freely cut such corners.
-
 [[plan]]
 (((array)))We can define a world with a _plan_, an array of
 strings that lays out the world's grid using one character per square.
 
+//** HINDI **//
+Iss kam ko manageable banane k liye sbse pehle to hume world word ka pura matlab smjhate hai.
+World ek two dimentional shape hai jisme ek full square gridek puri unit ko repersent karta hai.Aur har ek turn par animal ko ek chance milega action lene ka.
+To humne yha par time aur spaces ko 2 fixed size units mei devide yani bat dia.pehla square spaces k liye aur turns time k liye.Ha ye ek bekar aur inaccurate approximation hai.Lekin hum bs apne estimation se todi si feel lena chahte hai.
+Hum world ko ek plane k jaise represent kar rhe hai.esai socho jaise ek character ka ek lamba sa array hia isko hum world ki grids bhi keh sakte hai.
+
+__________________________________________________________________________________________finish
 // include_code
 
 [source,javascript]
@@ -64,7 +75,6 @@ var plan = ["############################",
 The “#” characters in this plan represent ((wall))s and rocks, and the
 “o” characters represent critters. The spaces, as you might have
 guessed, are empty space.
-
 (((object)))(((toString method)))(((turn)))A plan array can be
 used to create a ((world)) object. Such an object keeps track of the
 size and content of the world. It has a `toString` method, which
@@ -73,6 +83,13 @@ was based on) so that we can see what's going on inside. The world
 object also has a `turn` method, which allows all the critters in it to
 take one turn and updates the world to reflect their actions.
 
+
+
+//** HINDI **//
+Iss simple plane  mei "#" character  diwaro aur paththero ko represent karta hai."o" character animals ko repersent karta hai.Spaces ko aap simple spaces ki tarah man sakte hai.
+Ek plan array (list) se hum ek object bna sakte hai.wo object world k size aur content ko define karega.Iske liye 'toString' method hota hai jo world ko print hone wale strings mei convert kar deta hai.jisse hum aaram se smjh sakte hai ki kya chl rha hai.World object k pass ek 'turn' method bhi hota hai jo animals ko ek bar turn aur world ko update karne ki permission deta hia.
+
+__________________________________________________________________________________________finish
 [[grid]]
 == Representing space ==
 
@@ -83,6 +100,9 @@ identified by their x- and y-coordinates. We use a simple type,
 link:06_object.html#exercise_vector[previous chapter]), to represent
 these coordinate pairs.
 
+//** HINDI **//
+World object ek model hota hai jiski width and height fixed hoti hia.squares ko hum x-axis and y-axis se measure kar sakte hai.
+___________________________________________________________________________________________finish
 // include_code
 
 [source,javascript]
@@ -101,7 +121,6 @@ models the grid itself. A grid is part of a world, but we are making
 it a separate object (which will be a property of a ((world)) object)
 to keep the world object itself simple. The world should concern
 itself with world-related things, and the grid should concern itself with grid-related things.
-
 (((array)))(((data structure)))To store a grid of values, we have
 several options. We can use an array of row arrays and use two
 property accesses to get to a specific square, like this:
@@ -118,6 +137,12 @@ console.log(grid[1][2]);
 single array, with size width × height, and decide that the element at
 (_x_,_y_) is found at position _x_ + (_y_ × width) in the array.
 
+
+//** HINDI **//
+Ab hume models grid ka object type pta karna hai.Grid ek world ka chota sa part hai lekin hum isko ek alag object manenge jisse world ko hum alag man sake.world apne aap ko world se related cheezo se relate karna chahiye thik ussi tarah grid bhi apne se related cheezo se relate karna chahiye.
+Grid ki value store karne ka liye humare pass bahut sare option hai.hum 2 arrays ki ek array ko use kark bhi square ki specifice property ko access kar sakte hai jaise humne niche kia hai.
+Iske alawa hum single array bhi use kar sakte hai, jiska size width * height hoga, aur fir hume array ka koi bhi lena hai to hum _x_ + (_y_ * width) ka use karenge.
+
 [source,javascript]
 ----
 var grid = ["top left",    "top middle",    "top right",
@@ -125,6 +150,7 @@ var grid = ["top left",    "top middle",    "top right",
 console.log(grid[2 + (1 * 3)]);
 // → bottom right
 ----
+_________________________________________________________________________________________________finish
 
 (((encapsulation)))(((abstraction)))(((Array constructor)))(((array,creation)))(((array,length
 of)))Since the actual access to this array will be wrapped in methods
@@ -136,6 +162,12 @@ array of the given length.
 
 (((Grid type)))This code defines the `Grid` object, with some basic
 methods:
+
+//** HINDI **//
+Iss array k elements ko access karne methods grid object type mei milte hia.ye important nhi hai ki hum kon sa method use kare.Yha hum second method choose karenge kyuki usse hum asani se array bna sakte hai. 
+
+Ye niche diya gya code grid object ko smjhata hai aur uske kuch basics methods k bare mei btata hai:-
+_________________________________________________________________________________________________finish
 
 // include_code
 
@@ -159,7 +191,9 @@ Grid.prototype.set = function(vector, value) {
 ----
 
 And here is a trivial test:
-
+//**HINDI**//
+Ab ye toda mushkil aur alag trike ka test hoga
+_________________________________________________________________________________________________finish
 [source,javascript]
 ----
 var grid = new Grid(5, 5);
@@ -181,6 +215,11 @@ that, when called, returns an _action_. An action is an object with a
 `type` property, which names the type of action the critter wants to
 take, for example `"move"`. The action may also contain extra
 information, such as the direction the critter wants to move in.
+
+
+
+//**HINDI**//
+
 
 [[directions]]
 (((Vector type)))(((View type)))(((directions object)))(((object,as map)))Critters are terribly myopic and can see only the

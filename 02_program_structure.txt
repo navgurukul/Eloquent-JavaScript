@@ -1,432 +1,172 @@
-:chap_num: 2
-:prev_link: 01_values
-:next_link: 03_functions
+Chapter 2
+Program Structure
 
-= Program Structure =
+Hi! Iss chapter mei hum vaastvik roop se programming ki shuruaat karenge. Pichle chapter mein hum ne javascript ki  kuch simple  commands ko samjha aur chalaya tha, ab iss chapter mei hum usse  bade programs likhenge.
 
-[chapterquote="true"]
-[quote, _why, Why's (Poignant) Guide to Ruby]
-____
-And my heart glows bright red under my
-filmy, translucent skin and they have to administer 10cc of JavaScript
-to get me to come back. (I respond well to toxins in the blood.) Man,
-that stuff will kick the peaches right out your gills!
-____
+Pehle chapter mein humne “values” ke bare mein padha aur unn par “operators” ka use kar ke basic mathematical operations ki. .  Values create karna javascript me important hai. .
+Kisi  code ka ek chhota hisse jisse koi value produce ho  usse hum expression kehte hai.  Values jaise ki “42”, “swades movie”, etc. yeh sab expressions ke examples hai.
 
-(((why)))(((Poignant Guide)))In this chapter, we will start to do
-things that can actually be called _programming_. We will expand our
-command of the JavaScript language beyond the nouns and sentence
-fragments we've seen so far, to the point where we can
-express some meaningful prose.
+Brackets ke beech mein likhe code  ko bhi expression kehte hai. Agar hum do expressions ke beech me ek binary operator lagayein to isse bhi expression kahenge . Aur agar hum unary operator ek expression par lagaye usse bhi. Isse hume language based interface ki sundarta ka pata chalta hai. Javascript ko hum apni human language se compare kar sakte hai.
+Jaise shabd, expression ke samaan hai. Aur sentence ek javascript statement ke. Issi tarah ek program bhot saari statements se banta hai.  
 
-== Expressions and statements ==
+Halaki yeh program kaam ke nahi hai. Expression ek content bhi ho sakta hai jo sirf ek value ko produce kare, aur fir yeh value koi expression use kare.  Ek satatement useful tabhi hoti agar wo kuch change kare. Yeh change display par kuch ho sakta hai ya kuch internal change ho sakta hai jo aane wali statement ko change karegi. Inn changes ko “side effects” kehte hai. Uper diye gaye examples me  wo value “1” aur “true” ko produce karta hai, fir haath-on-haath/turant uska result de deta hai. Yeh kisi par koi impression nhi chodta. Kuch bhi aisa nhi hota jisse observe kiya ja sake jab hum program ko execute karte hai. Yeh ek useless program hai jo kuch change nhi kar rahe. 
 
-(((grammar)))(((syntax)))(((code,structure
-of)))(((grammar)))(((JavaScript,syntax)))In
-link:01_values.html#values[Chapter 1], we made some values and then
-applied operators to them to get new values. Creating values like this
-is an essential part of every JavaScript program, but it is only
-a part.
+Kabhi kabhar javascript hume statement ko semicolon ke bina end karne deta hai. Aur kabhi kabhi aisa nhi karne deta. Abhi yeh samjhna mushkil hai ki kab JS semicolon hatana allow karta hai aur kab nhi. Issiliyi abhi ke liye aap apne statements ko semi colon se end karna. Jab tak aap JS ki saari baarikiyan nhi samjhte.
 
-(((literal expression)))A fragment of code that produces a value is
-called an _((expression))_. Every value that is written literally
-(such as `22` or `"psychoanalysis"`) is an expression. An expression
-between ((parentheses)) is also an expression, as is a ((binary
-operator)) applied to two expressions or a unary operator applied to
-one.
+Aapne kabhi aise socha hai ki program internal state ko kaise yaad rakhta hai? aur kaise wo bhut saari cheezo ko yaad rakhta hai? Hume old values se new values produce karna aa gaya hai. Aur hum yeh bina old values change kiye bhi kar sakte hai. Inn new values ko store karne ke liye hum variables ka use karte hai.    
+Uper wala example humari agli type ki statement hai.  “var” ek special word hai jo ye batata hai ki ek variable define hone wala hai. Iske baad hum variable ka naam likhte hai. Aur agr aap isse saath-saath value dena chahte hai to “=” operator ka use karte hai.
 
-(((nesting,of expressions)))(((human language)))This shows part of the
-beauty of a language-based interface. Expressions can nest in a way
-very similar to the way subsentences in human languages are nested—a
-subsentence can contain its own subsentences, and so on. This allows
-us to combine expressions to express arbitrarily complex computations.
+var caught = 5 * 5; 
 
-(((statement)))(((semicolon)))(((program)))If an expression
-corresponds to a sentence fragment, a JavaScript _statement_
-corresponds to a full sentence in a human language. A program is
-simply a list of statements.
-
-(((syntax)))The simplest kind of statement is an expression with a
-semicolon after it. This is a program:
-
-[source,javascript]
-----
-1;
-!false;
-----
-
-It is a useless program, though. An ((expression)) can be content to
-just produce a value, which can then be used by the enclosing
-expression. A ((statement)) stands on its own and amounts to something
-only if it affects the world. It could display something on the
-screen—that counts as changing the world—or it could change the
-internal state of the machine in a way that will affect the statements
-that come after it. These changes are called _((side effect))s_. The
-statements in the previous example just produce the values `1` and
-`true` and then immediately throw them away. This leaves no impression
-on the world at all. When executing the program, nothing observable
-happens.
-
-(((programming style)))(((automatic semicolon
-insertion)))(((semicolon)))In some cases, JavaScript allows you to
-omit the semicolon at the end of a statement. In other cases, it has
-to be there, or the next ((line)) will be treated as part of the same
-statement. The rules for when it can be safely omitted are somewhat
-complex and error-prone. In this book, every statement that needs a
-semicolon will always be terminated by one. I recommend you do the
-same in your own programs, at least until you've learned more about
-subtleties involved in leaving out semicolons.
-
-== Variables ==
-
-(((syntax)))(((variable,definition)))(((side effect)))(((memory)))How
-does a program keep an internal ((state))? How does it remember
-things? We have seen how to produce new values from old values, but
-this does not change the old values, and the new value has to be
-immediately used or it will dissipate again. To catch and hold values,
-JavaScript provides a thing called a _variable_.
-
-[source,javascript]
-----
-var caught = 5 * 5;
-----
-
-(((var keyword)))And that gives us our second kind of ((statement)).
-The special word (_((keyword))_) `var` indicates that this sentence is
-going to define a variable. It is followed by the name of the variable
-and, if we want to immediately give it a value, by an `=` operator and
-an expression.
-
-The previous statement creates a variable called `caught` and uses it
-to grab hold of the number that is produced by multiplying 5 by 5.
-
-After a variable has been defined, its name can be used as an
-((expression)). The value of such an expression is the value the
-variable currently holds. Here's an example:
-
-[source,javascript]
-----
+Jaise upar humne ek variable banaya jiska naam “caught” hai. Aur issme humne 5*5 ki value(25) ko store kara.
+Jab hum variable defined kar dete hai , to uske baad hum iss variable ke naam ko ek expression ki tarah use kar sakte hai. Aur expression ki value, variable ki current value hoti hai. Jaise agar variable ki value 5 hai to expression ki value bhi 5 hogi. Example:
 var ten = 10;
 console.log(ten * ten);
 // → 100
-----
 
-(((underscore character)))(((dollar
-sign)))(((variable,naming)))Variable names can be any word that isn't
-a reserved word (such as `var`). They may not include spaces.
-Digits can also be part of variable names—`catch22` is a valid name,
-for example—but the name must not start with a digit. A variable name
-cannot include punctuation, except for the characters `$` and `_`.
+Hum variable ka koi bhi naam rakh sakte hai. Magar, iss baat ka dhyan rakhe ki variable ka naam koi bhi reserved word yaani ki koi bhi word jiska pehle se koi function hai( jaise “var”) nhi ho sakta. Variable ke naam mein spaces nhi aa sakte. Variable ke naam mein digits aa sakti hai jaise “catch22”, magar naam digits se start nhi ho sakta. Ismein “$” aur “_” ke ilawa aur koi special character hum nhi use kar sakte.
 
-(((= operator)))(((assignment)))(((variable,assignment)))When a
-variable points at a value, that does not mean it is tied to that
-value forever. The `=` operator can be used at any time on existing
-variables to disconnect them from their current value and have them
-point to a new one.
 
-[source,javascript]
-----
+Jab hum variable ko ek value assign karte hai to iska yeh matlab nahi hai ki uss variable ki value hamesha wahi rahegi. Hum = operator ka use kar kar ek variable ko jab jarurat pade tab nayi value de sakte hai. Jasie :-
+
 var mood = "light";
 console.log(mood);
 // → light
 mood = "dark";
 console.log(mood);
 // → dark
-----
 
-(((variable,model of)))(((tentacle (analogy))))You should
-imagine variables as tentacles, rather than boxes. They do not
-_contain_ values; they _grasp_ them—two variables can refer to the
-same value. A program can access only the values that it still has a
-hold on. When you need to remember something, you grow a tentacle to
-hold on to it or you reattach one of your existing tentacles to it.
+Variable ko aap boxes ke alawa  jaal ki tarah samjh sakte hai. variable mei koi value nahi hoti balki yeh value ko samjhata hai -jaise  2 variable same value bhi represent kar sakte hai.program keval variable ki current value par execute hota hai ki uss variable ki abhi value kya hai.jab hume kuch cheeze ya diffrent value  ki jrurat padegi to hum aapne variabe ya jaal ko bada krenge ya fir hum apne existing variable mei koi value attach karenge.
+Aap variables ko tentacles yaani kissi animal ke haaton jaisa samajh sakte hai. Variables mein koi value nhi hoti. Yeh bass value ko pakad kar rakhte hai. App ek variable ki value tab tak use kar sakte hai jab tak usne value ko pakad kar rakha hoga. Jab bhi koi value store karni hoti hai, hum usse tentacle se pakad lete hai. Ya koi existing tentacle use kar lete hai.     
 
-image::img/octopus.jpg[alt="Variables as tentacles"]
 
-Let's look at an example. To remember the number of dollars that Luigi
-still owes you, you create a variable. And then when he pays back $35,
-you give this variable a new value.
 
-[source,javascript]
-----
-var luigisDebt = 140;
-luigisDebt = luigisDebt - 35;
-console.log(luigisDebt);
-// → 105
-----
 
-(((undefined)))When you define a variable without giving it a value,
-the tentacle has nothing to grasp, so it ends in thin air. If you ask
-for the value of an empty variable, you'll get the value `undefined`.
+Ek example lete hai. Yeh yaad rakhne ke liye ki aapko rahul se kitne paise lene hai, uske liye aap ek variable bana sakte hun. Jab rahul kuch paise de-dega tab aap uss variable ki value change kar sakte hai. 
 
-(((var keyword)))A single `var` statement may define multiple
-variables. The definitions must be separated by commas.
 
-[source,javascript]
-----
+var rahulUdhar = 200;
+rahulUdhar = rahulUdhar- 50;
+console.log(rahulUdhar);
+// → 150
+Agar hum variable define karte time usse koi value nhi dete, tab uske pass kuch pakadne ke liye nhi hota. Agar aap iss empty variable ki value print kroge to value undefined aayegi kyunki humne uss variable ko value nahi di thi.
+
+App neeche example mein dekh sakte hai ki kaise ek “var” statement se hum ek se zada variable define karte hai. Hum variables ke naam ko comma( , ) se separate kar kar likhte hai. aur isse hum commas se alag karte hai.jaise yeh example dekho-- 
 var one = 1, two = 2;
 console.log(one + two);
 // → 3
-----
 
-== Keywords and reserved words ==
 
-(((syntax)))(((implements (reserved word))))(((interface (reserved
-word))))(((let keyword)))(((package (reserved word))))(((private
-(reserved word))))(((protected (reserved word))))(((public (reserved
-word))))(((static (reserved word))))(((void operator)))(((yield
-(reserved word))))(((reserved word)))(((variable,naming)))Words with
-a special meaning, such as `var`, are _((keyword))s_, and they may not
-be used as variable names. There are also a number of words that are
-“reserved for use” in ((future)) versions of JavaScript. These are also
-officially not allowed to be used as variable names, though some
-JavaScript environments do allow them. The full list of keywords and
-reserved words is rather long.
+Har programming language me kuch aise words hote hai jinke sath pehle se ek special meaning juda hua hota hai, jaise ki "var". Aise words ko keywords bolte hai. Inn words ko hum variable ke naam ke liye use nhi kar sakte hai. Aise hi kuch aur words hote hai jinhe reserved words bolte hai. Inn words ko javascript future mein kisi special purpose ke liye use karegi. Issiliye iss tarah ke words ko aap VARIABLE ke naam ki tarah use nahi kar sakte.Jaise:
 
-[source,text/plain]
-----
-break case catch class const continue debugger
-default delete do else enum export extends false
-finally for function if implements import in
-instanceof interface let new null package private
-protected public return static super switch this
-throw true try typeof var void while with yield
-----
 
-Don't worry about memorizing these, but remember that this might be
-the problem when a variable definition does not work as expected.
+{
+	"break case catch class const continue debugger
+	default delete do else enum export extends false
+	finally for function if implements import in
+	instanceof interface let new null package private
+	protected public return static super switch this
+	throw true try typeof var void while with yield"
+}
 
-== The environment ==
+Inko yaad karna jaruri nhi hai. 
+Kissi bhi time ek program mein variables aur unki values ke collection ko environment kehte hai. Environment kabhi khali nhi hota. Environment mei humesha variable hote hai jo language ke standard system ka part hote hai. Aur isme aise variable bhi hote hai jinse aas-pass ki surroundig se baat ki jaye. Example, browser me kuch aise variable aur functions hote hai jinse hum load hui website se baat kar sakte hai. Aur keyboard aur mouse ki bhi input le sakte hai.
 
-(((standard environment)))The collection of variables and their values
-that exist at a given time is called the _((environment))_. When a
-program starts up, this environment is not empty. It always contains
-variables that are part of the language ((standard)), and most of the
-time, it has variables that provide ways to interact with the
-surrounding system. For example, in a ((browser)), there are variables
-and functions to inspect and influence the currently loaded website
-and to read ((mouse)) and ((keyboard)) input.
 
-== Functions ==
+Bhot si default environment ki values function type ki hoti hai. Function 
+Environment mein bahut si values function type ki hoti hai. Aap functions ko toffees ki tarah soch sakte hai. Jaise toffee wrapper mein wrapped hoti hai. Ussi tarah functions ka code variables mein wrapped hota hai. Inn variables ka use kar kar hum unke dwara wrap kiye gaye code ko use kar sakte hai. Jaise, alert ek default environment variable hai jo ek function ka code wrapp karta hai. Yeh aise use hota hai,
 
-indexsee:[application (of functions),function application]
-indexsee:[invoking (of functions),function application]
-indexsee:[calling (of functions),function application]
-(((output)))(((function)))(((function,application)))(((alert
-function)))(((message box)))A lot of the values provided in the
-default environment have the type _((function))_. A function is a
-piece of program wrapped in a value. Such values can be _applied_ in
-order to run the wrapped program. For example, in a ((browser))
-environment, the variable `alert` holds a function that shows a little
-((dialog box)) with a message. It is used like this:
+Yeh aise use hota hai.   
 
-[source,javascript]
-----
 alert("Good morning!");
-----
 
-image::img/alert.png[alt="An alert dialog",width="8cm"]
+Functions ko execute karne ko invoking, calling ya applying kehte hai. Hum ek function ko call karne k liye uss expression ke baad brackets lagate hai jo ki function ki value produce kar rha hai. Jyadater aap direct uss variable ka naam use karoge jisme function hai. Jo value brackets ke beech mein likhi jaati hai, wo value function ke andar program ko di jaati hai. Jaise ki, alert function ek string value leta hai aur usse dialog box mein show karta hai. Inn values ko hum arguments bolte hai. Alert function ko sirf ek argument ki jarurt hoti hai. Par dusre functions ek se jyada aur different type ke arguments bhi le sakte hai.
 
-(((parameter)))(((function,application)))Executing a function is
-called _invoking_, _calling_, or _applying_ it. You can call a
-function by putting ((parentheses)) after an expression that produces a
-function value. Usually you'll directly use the name of the variable
-that holds the function. The values between the parentheses are given to
-the program inside the function. In the example, the `alert` function
-uses the string that we give it as the text to show in the dialog box.
-Values given to functions are called _((argument))s_. The `alert`
-function needs only one of them, but other functions might need a
-different number or different types of arguments.
 
-== The console.log function ==
+Alert function, apne program ke saath experiment karte hue kuch output karne ke liye use kiya ja sakta hai. Magar baar-baar dialog box par click karna irritating ho sakta hai. Issi Liye hum console.log ka use karte hai. Humne console.log ka use upar wale examples mein bhi kiya hai. Jyadatar systems jahan hum javascript ka code likhte hai, wo console.log ko support karte hai. Yeh function apne arguments ko kissi text output device (jaise, browser console) par likhta hai. Browser mein yeh output console par aati hai. Aap apne browser mein “f12” ya Mac mein Command-Option-I press kar kar console open kar sakte hai. Aur agar yeh nahi kaam karta to, “web console” ya “developer tools” ka option apne browser ki settings mein search kare.  
 
-(((JavaScript console)))(((developer
-tools)))(((Node.js)))(((console.log)))(((output)))The `alert` function
-can be useful as an output device when experimenting, but clicking
-away all those little windows will get on your nerves. In past
-examples, we've used `console.log` to output values. Most JavaScript
-systems (including all modern web ((browser))s and Node.js) provide a
-`console.log` function that writes out its arguments to _some_ text
-output device. In browsers, the output lands in the ((JavaScript
-console)). This part of the browser interface is hidden by default,
-but most browsers open it when you press F12 or, on Mac, when you
-press Command-Option-I. If that does not work, search through the
-menus for an item named “web console” or “developer tools”.
 
-ifdef::interactive_target[]
-
-When running the examples, or your own code, on the pages of this
-book, `console.log` output will be shown after the example, instead of
-in the browser's JavaScript console.
-
-endif::interactive_target[]
-
-[source,javascript]
-----
 var x = 30;
 console.log("the value of x is", x);
 // → the value of x is 30
-----
 
-(((object)))Though ((variable)) names cannot contain ((period
-character))s, `console.log` clearly has one. This is because
-`console.log` isn't a simple variable. It is actually an expression
-that retrieves the `log` ((property)) from the value held by the
-`console` variable. We will find out exactly what this means in
-link:04_data.html#properties[Chapter 4].
 
-[[return_values]]
-== Return values ==
+Haala ki variable k naam me special character nhi ho sakte, lekin “console.log” me hai. Aisa isliye hai kyuki console.log ek simple variable nhi hai. Yeh ek expression hai jo ki console variable se log property nikalta hai. Iske baare mein hum aur Chapter 4 mein padhenge.
 
-(((comparison,of numbers)))(((return value)))(((Math.max
-function)))(((maximum)))Showing a dialog box or writing text to
-the screen is a _((side effect))_. A lot of functions are useful
-because of the side effects they produce. Functions may also produce
-values, and in that case, they don't need to have a side effect to be
-useful. For example, the function `Math.max` takes any number of
-number values and gives back the greatest.
-
-[source,javascript]
-----
+Window par dialog box show karna ya screen par text likhna, ek tarha ke side effects hai. Bahut sare functions aapne side effects ki wajah se useful hote hai. Functions values bhi produce kar sakte hai, iss case mai unko useful hone ke liye side effects ki jarurat nhi hai. For example, Math.max function ek se jyada numbers mein se sabse bada number deta hai. 
 console.log(Math.max(2, 4));
 // → 4
-----
 
-(((function,application)))(((minimum)))(((Math.min
-function)))When a function produces a value, it is said to _return_
-that value. Anything that produces a value is an ((expression)) in
-JavaScript, which means function calls can be used within larger
-expressions. Here a call to `Math.min`, which is the opposite of
-`Math.max`, is used as an input to the plus operator:
 
-[source,javascript]
-----
+Functions value ko produce kar kar, uss value ko return karte hai. Aur jo bhi cheez koi value produce karti hai usse javascript mein ek expression bolte hai. Iska matlab hum function calls ko bhi expressions mein use kar sakte hai. Jaise humne iss example mein Math.min aur plus operator ko saath mein use kiya hai.
 console.log(Math.min(2, 4) + 100);
 // → 102
-----
 
-The link:03_functions.html#functions[next chapter] explains how to
-write your own functions.
+Next chapter mein hum apne functions likhna seekhenge.
 
-== prompt and confirm ==
 
-(((dialog box)))(((input)))(((browser)))(((confirm function)))Browser
-environments contain other functions besides `alert` for popping up
-windows. You can ask the user an OK/Cancel question using
-`confirm`. This returns a Boolean: `true` if the user clicks OK and
-`false` if the user clicks Cancel.
+prompt and confirm
 
-[source,javascript]
-----
+Browser ke environment mei aur bhut sare function hote hai alert ke alawa jo dialog box display karte hai. Confirm ka use kar kar aap user se question pooch sakte hai. User inka jawab OK ya CANCEL par click kar kar deta hai. Agar user OK click karta hai to Boolean true return hota hai. Aur agar cancel to Boolean false. Jaise,
+
 confirm("Shall we, then?");
-----
 
-image::img/confirm.png[alt="A confirm dialog",width="8cm"]
 
-(((input)))(((prompt function)))(((text input)))The `prompt` function
-can be used to ask an “open” question. The first argument is the
-question, the second one is the text that the user starts with. A line
-of text can be typed into the dialog window, and the function will
-return this text as a string.
+Dusra function hai “prompt”. Iska use karke hum user se ek question ka answer puch sakte hai. User ka answer prompt function ek string mein return karta hai. Yeh function 2 arguments leta hai. Pehli argument mein hum question likhte hai. Aur dusri mein hum wo text likhte hai jisse user likhna shuru karega. Jaise,
 
-[source,javascript]
-----
 prompt("Tell me everything you know.", "...");
-----
 
-image::img/prompt.png[alt="An prompt dialog",width="8cm"]
 
-These two functions aren't used much in modern web programming, mostly
-because you have no control over the way the resulting windows look,
-but they are useful for toy programs and experiments.
 
-== Control flow ==
+Control flow
 
-(((execution order)))(((program)))(((control flow)))When your program
-contains more than one ((statement)), the statements are executed,
-predictably, from top to bottom. As a basic example, this program has
-two statements. The first one asks the user for a number, and the
-second, which is executed afterward, shows the ((square)) of that
-number.
+Jab aapke program mei ek se jayada statement hoti hai , tab statements upar se niche ki taraf execute hoti hai. Jaise, iss program mei 2 statements hai. Pehli statement user se ek number input leti hai. Aur dusri statement, jo bad mei execute hogi wo uss number ka square show legi.
 
-[source,javascript]
-----
-var theNumber = Number(prompt("Pick a number", ""));
+var theNumber =Number(prompt("Pick a number", ""));
+alert("Your number is the square root of " + theNumber * theNumber);
+
+
+Upar diye gaye example mein humne user se input lene ke liye prompt function ka use kiya hai. Aur uss value ko output karne ke liye alert ka use kiya hai. 
+Humne “number” function ka use “string” value ko number mein convert karne ke liye kiya hai. Aisa isliye kiya hai kyunki prompt function humesha ek string value return karta hai aur square nikalne ke liye hume ek number ki jarurat hai.
+Issi tarah “string” aur “boolean” naam ke functions hai jo values ko inn type mein convert karte hai.
+
+
+Conditional execution
+
+Hum statements ko straight line ke ilawa aur ways mein bhi execute kar sakte hai. Conditional execution ek aisa tareeka hai. Iss mein boolean value “true” ya “false” se aage ka rasta pata chalta hai. Jaise, Agar condition hai :
+
+aapko bhook lagi hai ?
+True, to khalo!
+False, to mat kaho!
+
+Aise control flow ko hum digaram se aise represent kar sakte hai.
+
+
+If ( condition ) // agar condition true value degi tab code chalega
+	{	    // aur false to nhi
+		//code
+}
+var theNumber =Number(prompt("Pick a number", ""));
 alert("Your number is the square root of " +
       theNumber * theNumber);
-----
+Jaise hum iss example mei tab hi input ka square compute karenge jab input ek number ho.
 
-(((number,conversion to)))(((type coercion)))(((Number
-function)))(((String function)))(((Boolean
-function)))(((Boolean,conversion to)))The function `Number` converts a
-value to a number. We need that conversion because the result of
-`prompt` is a string value, and we want a number. There are similar
-functions called `String` and `Boolean` that convert values to those
-types.
+Ab agar hum koi string value input karenge jaise “twentyThree”. Tab if ke andar wali condition ka result false ayega. Aur if ke andar likha code nahi chalega.
 
-Here is the rather trivial schematic representation of straight
-control flow:
+isNaN function ek standard javascript function hai jo true value tab return karta hai jab given value NaN(not a number) yaani wo value number na ho . Aur false jab value number ho.
+Aur agar hum !isNan likhte hai, to yeh true tab return karega jab value number hogi.
+Aur, number function  NaN tab return karta hai jab string value mein number na ho. Warna wo string ko number mein convert karta.
 
-image::img/controlflow-straight.svg[alt="Trivial control flow",width="4cm"]
-
-== Conditional execution ==
-
-(((Boolean)))(((control flow)))Executing statements in straight-line
-order isn't the only option we have. An alternative is _((conditional
-execution))_, where we choose between two different routes based on a
-Boolean value, like this:
-
-image::img/controlflow-if.svg[alt="Conditional control flow",width="4cm"]
-
-(((syntax)))(((Number function)))(((if keyword)))Conditional execution
-is written with the `if` keyword in JavaScript. In the simple case, we
-just want some code to be executed if, and only if, a certain
-condition holds. For example, in the previous program, we might want
-to show the square of the input only if the input is actually a
-number.
-
-[source,javascript]
-----
-var theNumber = Number(prompt("Pick a number", ""));
-if (!isNaN(theNumber))
-  alert("Your number is the square root of " +
-        theNumber * theNumber);
-----
-
-With this modification, if you enter “cheese”, no output will be shown.
-
-The keyword `if` executes or skips a statement depending on the value
-of a Boolean expression. The deciding expression is written after the
-keyword, between ((parentheses)), followed by the statement to execute.
-
-(((isNaN function)))The `isNaN` function is a standard JavaScript
-function that returns `true` only if the argument it is given is
-`NaN`. The `Number` function happens to return `NaN` when you give it
-a string that doesn't represent a valid number. Thus, the condition
-translates to “unless `theNumber` is not-a-number, do this”.
-
-(((else keyword)))You often won't just have code that executes when a
-condition holds true, but also code that handles the other case. This
-alternate path is represented by the second arrow in the
-diagram. The `else` keyword can be used, together with `if`, to create
-two separate, alternative execution paths.
-
-[source,javascript]
-----
 var theNumber = Number(prompt("Pick a number", ""));
 if (!isNaN(theNumber))
   alert("Your number is the square root of " +
         theNumber * theNumber);
 else
   alert("Hey. Why didn't you give me a number?");
-----
 
-(((if keyword,chaining)))If we have more than two paths to choose
-from, multiple `if`/`else` pairs can be “chained” together. Here's an
-example:
+Agar humare pass ek se jyada “conditions” hai, to hum multiple yaani ki ek se jyada if/else statements bhi use kar sakte hai. Jaise, 
 
-[source,javascript]
-----
+
 var num = Number(prompt("Pick a number", "0"));
 
 if (num < 10)
@@ -435,27 +175,19 @@ else if (num < 100)
   alert("Medium");
 else
   alert("Large");
-----
+Iss program mei  sabse pehle user se ek nuber input lenge prompt function ka use kar kar. Uske baad hum check karenge ki  kya yeh number 10 se kam hai? iAgar hai to “small” show karo. Aur ye program yahi khatam ho jayega.Agar number 10 kam nahi hai, to program else statement pe jayega. Yahan else statement mei hi second if statement hai.Second condition mei (num<100) ye condition likhi hai. Iska matlab hai ki kya number 10 aur 100 ke bich mei hai? Agar hai to “medium” show kro. Agar inn dono conditions mei se koi bhi condition true nahi ho rahi to last wali else statement execute hogi. Aur wo large show karegi.
 
-The program will first check whether `num` is less than 10. If it is,
-it chooses that branch, shows `"Small"`, and is done. If it isn't, it
-takes the `else` branch, which itself contains a second `if`. If the
-second condition (`< 100`) holds, that means the number is between 10
-and 100, and `"Medium"` is shown. If it doesn't, the second, and last,
-`else` branch is chosen.
 
-The flow chart for this program looks something like this:
 
-image::img/controlflow-nested-if.svg[alt="Nested if control flow",width="4cm"]
+Jaise aap ye flow chart ko dekh ke ache se samjh jaoge, ye uppper if/else if/else statement  ko represent karti hai-
 
-[[loops]]
-== while and do loops ==
 
-(((even number)))Consider a program that prints all even numbers from
-0 to 12. One way to write this is as follows:
 
-[source,javascript]
-----
+while and do loops
+
+Agar aapko ek program likhna hai jo 0 se 12 tak sare even numbers print kare. Ek tarika to yeh hai ki hum her ek even number ko khud print kare. Jaise,  :
+
+
 console.log(0);
 console.log(2);
 console.log(4);
@@ -463,23 +195,13 @@ console.log(6);
 console.log(8);
 console.log(10);
 console.log(12);
-----
 
-(((control flow)))That works, but the idea of writing a program is to
-make something _less_ work, not more. If we needed all even numbers
-less than 1,000, the previous would be unworkable. What we need is a
-way to repeat some code. This form of control flow is called a
-_((loop))_:
+Yeh program kaam to sahi karega. Magar socho, agar aapko 0 se 10000 tak saare even numbers print karne hai? Hum ek-ek number ko khud console.log nhi karenge. Hume koi aisa tarika chahiye jisse yeh kaam hum baar-baar kar sake. Aur jyada lines ka program bhi na likhna pade. Aise control flow ko hum “loop” kehte hai.
+Ye kaam to sahi kar rha hai lekin isse likhne liye hume bhut lamba code likhna pad rha hai(ismei ek cheeze bar bar repeat ho rhi hai)  aur agar hume 0 se 12 ke bajay 0 se 10000 tak ke sare even number print karne ho to mujjhe bhut lamba program likhna padega to pehla wala tarika to use nahi karenge.to iske liye hume kuch code ko bar bar repeat karna padega ,iss type ke control flow ko hume loop kahte hai jaise ye diagram dekho: 
 
-image::img/controlflow-loop.svg[alt="Loop control flow",width="4cm"]
+Loop, se hum control flow ko program mei kissi point par wapas le ja sakte hai. Aur, firse wahi code chala sakte hai. Jaise, agar aapne ek baar print kiya “hello world”. Hum loop ka use karke baar-baar “hello world” print kara sakte hai. 
+Javascript mein loop “teen” ways se use kar sakte hai. “While”, “do while” aur “for” loop. Pehle hum while loop ke baare mei padenge. Example,
 
-(((syntax)))(((counter variable)))Looping control flow allows us to go
-back to some point in the program where we were before and repeat it
-with our current program state. If we combine this with a variable
-that counts, we can do something like this:
-
-[source,javascript]
-----
 var number = 0;
 while (number <= 12) {
   console.log(number);
@@ -488,44 +210,21 @@ while (number <= 12) {
 // → 0
 // → 2
 //   … etcetera
-----
 
-(((while loop)))(((Boolean)))A ((statement)) starting with the
-keyword `while` creates a loop. The word `while` is followed by an
-((expression)) in ((parentheses)) and then a statement, much like `if`.
-The loop executes that statement as long as the expression produces a
-value that is `true` when converted to Boolean type.
+Iss example mein humne pehle, number variable ki value zero kar di hai. Fir control flow “while” keyword par aayega aur samajh jayega ki loop start ho gaya hai. Agar while ki condition ka result true aata hai, to iske andar likha code execute hoga. Computer 0<= 12 condition ka result compute karega, jo ki true value dega. Aur while ke andar likha code chal jayega. Pehle number print karega. Firr uski value 2 se badegi, aur control flow dubara upar jaa kar condition ka result nikalega. Iss baar 2<=12 check hoga. Iska result bhi true ayega. Aur firr while ka code chalgea. Issi tarah jab tak number ki value 14 nhi ho jaati tab tak while ka code chalta rahega.
 
-(((grouping)))((({} (block))))(((block)))In this loop, we want to both
-print the current number and add two to our variable. Whenever we need
-to execute multiple ((statement))s inside a loop, we wrap them in
-((curly braces)) (`{` and `}`). Braces do for statements what
-((parentheses)) do for expressions: they group them together, making
-them count as a single statement. A sequence of statements wrapped in
-braces is called a _block_.
+While ke andar ek se jyada statements likhne ke liye hum braces yaani { } ka uske karte hai. Jaise humne upar wale example mein kiya hai. Braces mein likhe lines ko hum “block” kehte hai. Jaise,
 
-(((programming style)))Many JavaScript programmers wrap every single
-loop or `if` body in braces. They do this both for the sake of
-consistency and to avoid having to add or remove braces when changing
-the number of statements in the body later. In this book, I will write
-most single-statement bodies without braces, since I value brevity.
-You are free to go with whichever style you prefer.
+{	line1 … 
+line2…
+line3 …  
+} 
+Line1 se line3 tak statements ko hum ek “block” bol sakte hai.
+Generally, hum ek statement ko bhi braces mein likhte hai. Taaki program banate time confusion na ho. Aur agar hume baad mein while ya if mein agar ek se jyada line likhni pade to braces na add karne pade.
 
-(((comparison)))(((state)))The variable `number` demonstrates the way
-a ((variable)) can track the progress of a program. Every time the
-loop repeats, `number` is incremented by `2`. Then, at the beginning
-of every repetition, it is compared with the number `12` to decide
-whether the program has done all the work it intended to do.
 
-(((exponentiation)))As an example that actually does something useful,
-we can now write a program that calculates and shows the value of
-2^10^ (2 to the 10th power). We use two variables: one to keep
-track of our result and one to count how often we have multiplied this
-result by 2. The loop tests whether the second variable has reached 10
-yet and then updates both variables.
+Jaise hum ek example lete hai ,hume ek program likhna hai jo 210  (2 ki power 10) ki value calculate kare.iske liye hume 2 variabl banayenge :jismei se ek hamare result ko represent kare aur dusara number of multiply count kare matlab kitni bar multiply ho rahi hai ye count kare  kyuki hume keval 10 bar hi multiply karna hai.jaise hi second variable ki value 10 ho jayegi tab loop ruk jayega aur dono variable ki value update honi bhi band ho jayegi .
 
-[source,javascript]
-----
 var result = 1;
 var counter = 0;
 while (counter < 10) {
@@ -534,209 +233,138 @@ while (counter < 10) {
 }
 console.log(result);
 // → 1024
-----
+Iss example mein hum counter ki value 1 bhi rakh sakte the. Aur number<10 ki jagah number <= 10 check kar sakte the. Magar humne counter ki value 0 se start kari. Humne aisa kyun kiya? Iska answer aapko chapter 4 mein milega.   
 
-The counter could also start at `1` and check for `<= 10`, but, for
-reasons that will become apparent in
-link:04_data.html#array_indexing[Chapter 4], it is a good idea to get
-used to counting from 0.
-
-(((loop body)))(((do loop)))(((control flow)))The `do` loop is a
-control structure similar to the `while` loop. It differs only on one
-point: a `do` loop always executes its body at least once, and it
-starts testing whether it should stop only after that first execution.
-To reflect this, the test appears after the body of the loop:
-
-[source,javascript]
-----
 do {
-  var yourName = prompt("Who are you?");
-} while (!yourName);
-console.log(yourName);
-----
+  var Naa = prompt("Aap kaun hai?");
+} while (!Naam);
+console.log(Naam);
 
-(((Boolean,conversion to)))(((! operator)))This program will
-force you to enter a name. It will ask again and again until it gets
-something that is not an empty string. Applying the `!` operator will
-convert a value to Boolean type before negating it, and all strings
-except `""` convert to `true`. This means the loop continues going round
-until you provide a name that is not the empty string.
+Yeh loop tab tak chalta rahega jab tak user koi “non-empty string” yaani ki aise string jo khaali nhi ho input nhi karta. Aisa isliye kyunki pehle control flow “do” par aayega. Uske baad “prompt” function execute hoga aur user se input lega. Agar user kuch input nhi karta to condition “!Naam” true ho jayegi. Aur control flow wapas upar chala jayega. Magar, agar user kuch input kar deta hai, to yeh condition false ho jayegi. Aur hum loop se bahar aa jayenge. Firr, console.log function se user ka naam console par print ho jayega.
 
-== Indenting Code ==
 
-(((block)))(((code structure)))(((whitespace)))(((programming
-style)))You've probably noticed the spaces I put in front of some
-statements. In JavaScript, these are not required—the computer will
-accept the program just fine without them. In fact, even the ((line))
-breaks in programs are optional. You could write a program as a single
-long line if you felt like it. The role of the ((indentation)) inside
-blocks is to make the structure of the code stand out. In complex
-code, where new blocks are opened inside other blocks, it can become
-hard to see where one block ends and another begins. With proper
-indentation, the visual shape of a program corresponds to the shape of
-the blocks inside it. I like to use two spaces for every open block,
-but tastes differ—some people use four spaces, and some people use
-((tab character))s.
 
-== for loops ==
 
-(((syntax)))(((while loop)))(((counter variable)))Many loops follow
-the pattern seen in the previous `while` examples. First, a “counter”
-variable is created to track the progress of the loop. Then comes a
-`while` loop, whose test expression usually checks whether the counter
-has reached some boundary yet. At the end of the loop body, the
-counter is updated to track progress.
+Indenting Code
 
-(((for loop)))(((loop)))Because this pattern is so common, JavaScript and
-similar languages provide a slightly shorter and more comprehensive
-form, the `for` loop.
+Aapne, shayad yeh notice kar liya hoga ki mein kuch statements ke shuruaat mein khaali jagah chod deta hun(spaces) aur kuch ke aage nhi. Aisa karna javascript mein jaruri nhi hai. Hum ek line mein bhi pura program likh sakte hai. Magar, aisa karne se program mein galtiyan aur program samjhne mein mushkil hogi. Isliye hum indentation ka use karte hai. Yaani ki hum “code blocks” ke shuruat mein spaces daalte hai. Taaki code debug karna aur padhna easy ho jaye.
 
-[source,javascript]
-----
+
+Bade aur complex programs mei “nested blocks” yaani ek ke andar ek blocks ho sakte hai. Agar hum blocks ko indent nhi karte, to yeh samjhna ki koi block kahan se shuru hai aur kahan end ho raha hai bhot mushkil ho jata hai. Magar sahi indentation ka use kar kar yeh samjhna aur easy ho jata hai. 
+Iss book mein meine indentation ke liye 2 spaces ka use kiya hai. Kai programmers 4 spaces ya “tab” character ka bhi use karte hai.
+
+
+
+Apne shayad notice kiya hoga ki statements se phele kuch space diya hua hai. javaScript me space dalna jaruri nhi hota iske bina nhi apka code run ho jaega. Aap javaScript me ek hi line me bhi sara code likh sakte hai. Indention ka use code ko structure dene ke liye hota hai taki bad me aap isko aasani se padh aur samjh sako. Jab code bada aur thoda muskil hota hai to usme smjhna muskil ho sakta hai ki kaha par blocks open hai or kaha par end hai. Ache se identation se aap ko yeh chije smjhne me muskil nhi hogi.
+
+
+
+for loops
+
+Jyadatar loops while loop jaisa hi pattern use karte hai. Jaise while loop mein sabse pehle hum ek counter bante hai jo loop ki progress dekhta hai. Uske baad while keyword use karte . Fir isme counter ki value condition se compare hoti hai. Agar condition true hoti hai tab loop ki body chalti hai. Aur agar false, tab body nahi chalti.Loop ki body ke last mei counter variable update kiya jata hai.Yeh pattern itna common hai, isliye javascript hume isse likhne ke liye ek aur tareeka deti hai: For Loop. Jaise,
+
+
 for (var number = 0; number <= 12; number = number + 2)
   console.log(number);
 // → 0
 // → 2
 //   … etcetera
-----
 
-(((control flow)))(((state)))This program is exactly equivalent to the
-link:02_program_structure.html#loops[earlier] even-number-printing
-example. The only change is that all the ((statement))s that are
-related to the “state” of the loop are now grouped together.
+Yeh example bhi pichle even-number wale example ki tarah hai. Yaha bas ek diffrent hai ki jo bhi statements loop ke state ke related thi ab wo sari ek sath group me hai
 
-The ((parentheses)) after a `for` keyword must contain two
-((semicolon))s. The part before the first semicolon _initializes_ the
-loop, usually by defining a ((variable)). The second part is the
-((expression)) that _checks_ whether the loop must continue. The final
-part _updates_ the state of the loop after every iteration. In most
-cases, this is shorter and clearer than a `while` construct.
 
-(((exponentiation)))Here is the code that computes 2^10^, using `for`
-instead of `while`:
+For keywords me brackets ke bad me semicolons lagane jaruri hota hai. first semicolon ke aage wala part yeh decide karta hai ki loop kha se start ho raha hai jo generally hum usse variable se defined karte hai.
+Aur second part ek expression hota hai jo yeh check karta hai ki loop kha tak chalna chahiye. Aur last part har iteration ke bad loop ki state change hoti hai matlab variable ki value change hoti rahti hai.jaydatar yeh tarika while loop wale tarike se chota aru clear hota hai.
+Yha  210 hai ka code likha hai while loop ke bina :
 
-[source,javascript]
-----
+
 var result = 1;
 for (var counter = 0; counter < 10; counter = counter + 1)
-  result = result * 2;
+   result = result * 2;
 console.log(result);
 // → 1024
-----
+Yha hum for loop ke aage {} brackets nahi laga rahe hai iski jagah hum 2 space diye hue hai isse hume ye janane mei asani hogi ki for loop  kha se start hua hai  ,aisa hum tab karte hai jab hume for loop mei keval ek statement dalni hai {} brackets na lagana matlab for loop mie keval ek statement hai.
 
-(((programming style)))(((indentation)))Note that even though no block
-is opened with a `{`, the statement in the loop is still indented two
-spaces to make it clear that it “belongs” to the line before it.
 
-== Breaking Out of a Loop ==
 
-(((loop,termination of)))(((break keyword)))Having the loop's
-condition produce `false` is not the only way a loop can finish. There
-is a special statement called `break` that has the effect of
-immediately jumping out of the enclosing loop.
 
-This program illustrates the `break` statement. It finds the first number
-that is both greater than or equal to 20 and divisible by 7.
 
-[source,javascript]
-----
+Breaking Out of a Loop
+
+Jab loop ki condition false ho jati hai tab hum loop se bahar aa jate hai, jisse loop band ho jata hai. Socho agar aapko loop se bahar aana hai aur wo bhi bina condition ko false kiye to iske liye hum break statement ka use karte hai.loop ke ander break likhne se hum loop se directly jump karke bahar aa jate hai.
+Yeh program break statement ke use ko describe karta hai,ki break statement ka use hum kaise karte hai.Ismei hume 20 ya 20 ke bad pehle jo number 7 se divide hote hai wo print karne hai.
+
 for (var current = 20; ; current++) {
   if (current % 7 == 0)
     break;
 }
 console.log(current);
 // → 21
-----
+Hum modulus (%) ka use karke asani se yeh pta laga sakte hai ki koi number dusre number se divide ho rha hai ya nahi. Agar unke division ka remainder zero aayega tab wo number dusre se divide ho raha hoga. Jaise uppar wale example mei koi bhi aise part nahi hai jo loop ko finish kare matlab loop mai koi bhi esi condition nhi hai jo false ho, isme tab tak loop stop nahi hoga jab tak hum break statement nahi lagayenge.
 
-(((remainder operator)))(((% operator)))Using the remainder
-(`%`) operator is an easy way to test whether a number is divisible by
-another number. If it is, the remainder of their division is zero.
 
-(((for loop)))The `for` construct in the example does not have a part
-that checks for the end of the loop. This means that the loop will
-never stop unless the `break` statement inside is executed.
+Agar apne koi esa program likha hai jisme kabhi bhi condtion false nhi ho rahi hai aur apne break statement bhi nhi lagai to socho kya hoga ?
+To apka program infinite ho jayega jiska matlab aapka program kabhi finish nhi hoga chalta rahega, joh ki buri chij hai.
 
-If you were to leave out that `break` statement or accidentally write
-a condition that always produces `true`, your program would get stuck
-in an _((infinite loop))_. A program stuck in an infinite loop will
-never finish running, which is usually a bad thing.
 
-ifdef::interactive_target[]
+Agar apne iss page ke ek example mei infinite loop chala diya aur bad mei aap usse band karna chahenge to aisa karne ke liye jiss page pe aap kam kar rahe ho wo apko close karna padega. ya fir recover karne ke liye apko pure browser ko hi band karna pad sakta hai.aisa isliye ho raha hai kyuki browser ka har part ek dusre se link hota hai. Jab aap page par infinite loop chalaoge to wo page hang ho jayega kyuki loop ka koi end nahi millega. Jab ek page hang ho gaya to dusre pages automatically hang ho jayenge. Kyuki sare pages aapas mei connected  hote hai.
 
-If you create an infinite loop in one of the examples on these pages,
-you'll usually be asked whether you want to stop the script after a
-few seconds. If that fails, you will have to close the tab that you're
-working in, or on some browsers close your whole browser, in order to
-recover.
+Jaise break keyword hota hai thik aise hi ek continue keyword hota hai jo loop ki progress ko effect karta hai. Agar hum continue keyword ko loop mei dal de to,tab program loop see bahar aakar ,loop ki next iteration se fir se continue karega.
 
-endif::interactive_target[]
 
-(((continue keyword)))The `continue` keyword is similar to `break`, in
-that it influences the progress of a loop. When `continue` is
-encountered in a loop body, control jumps out of the body and
-continues with the loop's next iteration.
+Updating variables succinctly
 
-== Updating variables succinctly ==
-
-(((assignment)))(((+= operator)))(((-= operator)))(((/=
-operator)))(((*= operator)))(((state)))(((side effect)))Especially
-when looping, a program often needs to “update” a variable to hold a
-value based on that variable's previous value.
-
-// test: no
-
-[source,javascript]
-----
+Especially when looping, a program often needs to “update” a variable to hold a value based on that variable’s previous value.
+Aapne notice kiya hoga ki loop karte time hume variables ki value change karni padti hai. Jaise, 
 counter = counter + 1;
-----
+Javascript hume aisa karne ke liye ek shortcut deti hai :
 
-JavaScript provides a shortcut for this:
 
-// test: no
 
-[source,javascript]
-----
 counter += 1;
-----
 
-Similar shortcuts work for many other operators, such as `result *= 2` to
-double `result` or `counter -= 1` to count downward.
+Yeh shortcut aur bhi operators ke saath chalta hai. Jaise,
+Counter = counter*2;  // shortcut	counter *= 2;
+Counter = counter -1; //shortcut		couner-=1;
 
-This allows us to shorten our counting example a little more.
+Pehle example mei her baar counter ki value double ho rahi. Aur dusre mein hum counter ki value her baar 1 se kam kar rahe hai.
 
-[source,javascript]
-----
+
+Yeh hume upar wale example ko aur short karne me help karta hai ,
+Inn shortcuts ka use karke hum “even numbers” wale example ka code thoda chota kar sakte hai : 
 for (var number = 0; number <= 12; number += 2)
   console.log(number);
-----
 
-(((++ operator)))(((-- operator)))For `counter += 1` and `counter -=
-1`, there are even shorter equivalents: `counter++` and `counter--`.
 
-== Dispatching on a value with switch ==
+Javascript mein counter += 1 likhne ka bhi shortcut hota hai. “Counter++”. Issi tarah counter -= 1 ko hum “counter--” likh sakte hai. Generally, counter++ aur counter-- use kiya jata hai.It is common for code to look like this:: counter++ and counter--.
 
-(((syntax)))(((conditional execution)))(((dispatching)))(((if
-keyword,chaining)))It is common for code to look like this:
 
-// test: no
 
-[source,javascript]
-----
-if (variable == "value1") action1();
+Dispatching on a value with switch 
+
+It is common for code to look like this:Aksar aisa hota hai ki hume variable ki value 3-4 values se compare karni padti hai. Aur fir decision lena hota hai. Aisa karne ke liye hum ek se jyada if/else ka use karte hai.Aur humara code kuch aisa dikhta hai :if (variable == "value1") action1();
 else if (variable == "value2") action2();
 else if (variable == "value3") action3();
 else defaultAction();
-----
+Aisa hum “switch” keyword ka use karke bhi kar sakte hai. Jaise,switch( variable ) {
+	case “value1”:
+		action1();
+		break;
+	case “value2”:
+		action2();
+		break;
+	case “value3”:
+		action3();
+		break;
+	Default:
+		defaultAction();
+		Break;
+}
+Switch ke baad hum jiss variable ki value hume compare karni hai, wo likhte hai. Aur switch ka “block” start karte hai. Jinn bhi values se hum variable ki value compare karna chahte hai, unn values ko hum “case” keyword ke baad likhte hai. Switch ke andar hum kitne bhi “case” bana sakte hai. Hum ek “default” keyword bhi use karte hai. Iska code tab execute hota hai jab variable ki value kissi aur value se match nhi hoti.
+Control flow uss case par jata hai jahan variable ki value match hoti hai. Aur uske neeche likhe code ko “break” keyword tak execute karta hai. Jaise hi break aata hai control flow switch block se nikal jata hai. Example,
 
-(((colon character)))(((switch keyword)))There is a construct called
-`switch` that is intended to solve such a “dispatch” in a more direct
-way. Unfortunately, the syntax JavaScript uses for this (which it
-inherited from the C/Java line of programming languages) is somewhat
-awkward—a chain of `if` statements often looks better. Here is an
-example:
 
-[source,javascript]
-----
+
 switch (prompt("What is the weather like?")) {
   case "rainy":
     console.log("Remember to bring an umbrella.");
@@ -750,69 +378,43 @@ switch (prompt("What is the weather like?")) {
     console.log("Unknown weather type!");
     break;
 }
-----
 
-(((fallthrough)))(((comparison)))(((break keyword)))(((case
-keyword)))(((default keyword)))You may put any number of `case` labels
-inside the block opened by `switch`. The program will jump to the
-label that corresponds to the value that `switch` was given or to
-`default` if no matching value is found. It starts executing
-statements there, even if they're under another label, until it
-reaches a `break` statement. In some cases, such as the `"sunny"` case
-in the example, this can be used to share some code between cases (it
-recommends going outside for both sunny and cloudy weather). But
-beware: it is easy to forget such a `break`, which will cause the
-program to execute code you do not want executed.
 
-== Capitalization ==
 
-(((capitalization)))(((variable,naming)))(((whitespace)))Variable
-names may not contain spaces, yet it is often helpful to use multiple
-words to clearly describe what the variable represents. These are
-pretty much your choices for writing a variable name with several
-words in it:
+switch (prompt("Aaj konsa day hai?")) {
+  case "Saturday":
+    console.log("Scooter saaf karna hai");
+  case "Sunday":
+    console.log("Office ki holiday hai");
+    break;
+  default:
+    console.log("Saturday/Sunday nhi hai");
+    break;
+}
 
-----
-fuzzylittleturtle
-fuzzy_little_turtle
-FuzzyLittleTurtle
-fuzzyLittleTurtle
-----
+Iss example mein agar user “Saturday” input karega, tab “scooter saaf karna hai” aur “office ki holiday hai” console per print hoga. Aisa isliye hoga kyunki case value match hone ke baad code break statement tak execute hota hai. Isliye case “sunday” ka bhi code execute ho jayega. Aisa karke hum 2 cases, “saturday” aur “sunday” ka code share kar sakte hai. Magar, aise karte hue humesha dhyan rakhe kyunki kabhi-kabhar jo code aap execute karna nhi chahte wo bhi galti se execute ho jayega.
 
-(((camel case)))(((programming style)))(((underscore character)))The
-first style can be hard to read. Personally, I like the look of the
-underscores, though that style is a little painful to type. The
-((standard)) JavaScript functions, and most JavaScript programmers,
-follow the bottom style—they capitalize every word except the first.
-It is not hard to get used to little things like that, and code with
-mixed naming styles can be jarring to read, so we will just follow
-this ((convention)).
 
-(((Number function)))(((constructor)))In a few cases, such as the
-`Number` function, the first letter of a variable is also capitalized.
-This was done to mark this function as a constructor. What a
-constructor is will become clear in
-link:06_object.html#constructors[Chapter 6]. For now, the important
-thing is not to be bothered by this apparent lack of ((consistency)).
+Capitalization
 
-== Comments ==
+Variable name mei hum space nahi dal sakte jabki bhut sare word ko alag aur clear tarike se padne k liye hum space dalte hai lekin yeh valid nahi hai.aisa karne ke liye aap underscore(“_”)ka use kar sakte hai.jaise yeh example dekho: Generally, agar kissi naam mein ek se jyada words hote hai to hum usse space se separate kar dete hai. Jaise, pankaj kumar. Magar variable ke naam mein spaces nhi aa sakte.
+Agar variable ke naam mein ek se jyada word ho to hum usse neeche gaye teen tareekon mein se kissi bhi ek tareeke se likh sakte hai. Jaise,
 
-(((readability)))Often, raw code does not convey all the information
-you want a program to convey to human readers, or it conveys it in
-such a cryptic way that people might not understand it. At other
-times, you might just feel poetic or want to include some thoughts as
-part of your program. This is what _((comment))s_ are for.
+pankajkumar 	
+pura naam without spaces 
+pankaj_kumar	
+her word ke beech mein underscore
+pankajKumar
+pehle word small mein, uske baad her word ka pehla                 letter capital
+Pehle tareeke se jyada lambe variables ke naam samajh nhi aate. Dusre tareeke mein hume bar-bar underscore use karna padta hai. Aur, teesra tareeka bhaur se javascript programmers aur standard javascript functions use karte hai. Aapko shuruaat mein aise variable ka naam type karne mein problem hogi. Magar, aisa karne se aapko apna code padne mein aasani hogi.
 
-(((slash character)))(((line comment)))A comment is a piece of text
-that is part of a program but is completely ignored by the computer.
-JavaScript has two ways of writing comments. To write a single-line
-comment, you can use two slash characters (`//`) and then the comment
-text after it.
 
-// test: no
 
-[source,javascript]
-----
+Comments
+
+Aapne notice kiya hogi ki mein bhaut saare examples mein  “do slashes”( // ) use karke text likhta hun. Aisa karne se javascript uss line ko “comment” maanti hai. Comments mein likha koi code ya text execute nhi hota. Agar hum kuch bhi comments mein likhte hai, javascript uss text ko ignore karti hai. Comments ka use karke hum apne code ka meaning aur ache se explain kar sakte hai. Isliye mein bhi apne programs mein comments ka use karta hun.
+Javascript mein 2 tareeke se comment kar sakte hai. Pehla, “single line comment” yaani ke “ ek line ka comment”. Agar hum kissi text ki shuruaat mein // likh dete hai. To wo text, single line comment ban jaata hai. Jaise,
+
 var accountBalance = calculateBalance(account);
 // It's a green hollow where a river sings
 accountBalance.adjust();
@@ -821,15 +423,10 @@ var report = new Report();
 // Where the sun on the proud mountain rings:
 addToReport(accountBalance, report);
 // It's a little valley, foaming like light in a glass.
-----
 
-(((block comment)))A `//` comment goes only to the end of the line. A
-section of text between `/*` and `*/` will be ignored, regardless of
-whether it contains line breaks. This is often useful for adding
-blocks of information about a file or a chunk of program.
+Aur dusra tarika hai “multi line comment” yaani ke “ek se jyada line ka comment”. Iss tareeke se hum bhut sari line ek sath comment kar sakte hai. Jahan se aapko comment shuru karna hai wahan /* type karo. Aur jahan khatam karna hai wahan */. Multi line comments pure page jitne bhi ho sakte hai. Jaise,
 
-[source,javascript]
-----
+
 /*
  I first found this number scrawled on the back of one of
  my notebooks a few years ago. Since then, it has often
@@ -838,52 +435,30 @@ blocks of information about a file or a chunk of program.
  me, so I've decided to keep it.
 */
 var myNumber = 11213;
-----
 
-== Summary ==
 
-You now know that a program is built out of statements, which
-themselves sometimes contain more statements. Statements tend to
-contain expressions, which themselves can be built out of smaller
-expressions.
+Summary
 
-Putting statements after one another gives you a program that is
-executed from top to bottom. You can introduce disturbances in the
-flow of control by using conditional (`if`, `else`, and `switch`) and
-looping (`while`, `do`, and `for`) statements.
+Ab aap yeh jaan gaye hai ki ek program mein bhot saari statements hoti hai, statement mei ek se jyada expression ho sakte hai. Aur, yeh expressions bhi apne jaise chote-chote expressions se bante hai.
+Generally, statements upar se neeche ki taraf execute hoti hai. Magar hum iss control flow ko “if, else, switch, while, do while, for aur break” ka use karke change kar sakte hai.
 
-Variables can be used to file pieces of data under a name, and they
-are useful for tracking state in your program. The environment is the
-set of variables that are defined. JavaScript systems
-always put a number of useful standard variables into your
-environment.
 
-Functions are special values that encapsulate a piece of program. You
-can invoke them by writing `functionName(argument1, argument2)`. Such
-a function call is an expression, and may produce a value.
+Functions mein code likha hota hai jisse hum function ko call karke use kar sakte hai. Function ko call karne ke liye hum function_ka_naam( argument1, argument2 … ) likhte hai. Function calls expression hoti hai. Aur yeh kabhi-kabhar value bhi return karti hai.
 
-== Exercises ==
 
-(((exercises)))If you are unsure how to try your solutions to
-exercises, refer to the link:00_intro.html#intro[introduction].
 
-Each exercise starts with a problem description. Read that and try to
-solve the exercise. If you run into problems, consider reading the
-hints (!interactive after the exercise!)(!book at the link:hints.html#hints[end of the book]!).
-Full solutions to the exercises are not included in this
-book, but you can find them online at
-http://eloquentjavascript.net/code[_eloquentjavascript.net/code_].
-If you want to learn something from the exercises, I recommend looking
-at the solutions only after you've solved the exercise, or at least
-after you've attacked it long and hard enough to have a slight
-headache.
 
-=== Looping a triangle ===
 
-(((triangle (exercise))))Write a ((loop)) that makes seven calls to
-`console.log` to output the following triangle:
+Exercises
 
-----
+If you are unsure how to try your solutions to exercises, refer to the introduction.
+
+Her exercise mein bataya gaya hai ki aapko kya karna hai. Usse ek baar pehle padho aur try karo solve karne ka. Agar, samajh nhi aata ki exercise kaise karni hai, to uske neeche diye gaye hints ko padhe. Exercises ke solution aap iss link par dekh sakte hai. Agar aap sahi mein kuch seekhna chahte ho, to pehle exercise khud solve karna aur fir solution dekhna. Ya tab solution dekhna jab exercise aapko ache se pareshaan kar de.
+
+
+Looping a triangle
+
+Aisa ek loop likhe jo console.log function ko 7 baar call kare. Aur aisa triangle output kare:
 #
 ##
 ###
@@ -891,142 +466,33 @@ headache.
 #####
 ######
 #######
-----
 
-It may be useful to know that you can find the length of a string by
-writing `.length` after it.
-
-[source,javascript]
-----
+Hint: Aap ek string ki length yaani ke uss string mein kitne characters hai, uske naam ke aage .length likh kar nikal sakte ho.
 var abc = "abc";
 console.log(abc.length);
 // → 3
-----
+Bahut sari exercise mei code ka ek chota sa piece hai jise aap modify karke solve kar sakte hai ,isse aap kisi code ko aasani ye smajh sakte hai .ye yad rakhe ki code block par click karne se aap usmei edit kar sakte hai
 
-ifdef::interactive_target[]
 
-Most exercises contain a piece of code that you can modify to solve
-the exercise. Remember that you can click code blocks to edit them.
 
-[source,javascript]
-----
-// Your code here.
-----
-endif::interactive_target[]
 
-!!hint!!
+JavaScript
 
-(((triangle (exercise))))You can start with a program that simply
-prints out the numbers 1 to 7, which you can derive by making a few
-modifications to the
-link:02_program_structure.html#loops[even number printing example]
-given earlier in the chapter, where the `for` loop was introduced.
+Ek program banao jo 1 se 100 tak numbers print kare. Magar, agar number 3 se divisible hai to “java” print hona chaiye. Aur agar number 5 se divisible hai to “script” print hona chahiye. Warna wo number print hona chahiye.
+Yeh program banane ke baad, iss program ko change kar kar “JavaScript” print karao agar number 3 aur 5 dono se divisible hai. Dhyan rakhe ki jo kaam program pehle kar raha tha, wo ab bhi hona chahiye. 
+( Yeh question bhot se interviews mein pucha gaya hai. Aur kaafi log isse solve nhi kar paate. … ?
 
-Now consider the equivalence between numbers and strings of hash
-characters. You can go from 1 to 2 by adding 1 (`+= 1`). You can go
-from `"#"` to `"##"` by adding a character (`+= "#"`). Thus, your
-solution can closely follow the number-printing program.
 
-!!hint!!
+Chess board
 
-=== FizzBuzz ===
+Ek aisa program likho jo ek string creat kare aur wo string 8*8 grid represent kare matlab 8 8 aisi lines bnani chahiye jo aaps mei intersect ho jaise chess ke box hote hai.aur hume har ek box ki position par hume space ya “#” character likhna hai.To inn character se ek chess board banana chahiye.jab hum inn string value ko console.log mei chla kar dekhe to hume ye output mile--
 
-(((FizzBuzz (exercise))))(((loop)))(((conditional execution)))Write a
-program that uses `console.log` to print all the numbers from 1 to
-100, with two exceptions. For numbers divisible by 3, print `"Fizz"`
-instead of the number, and for numbers divisible by 5 (and not 3),
-print `"Buzz"` instead.
-
-When you have that working, modify your program to print `"FizzBuzz"`,
-for numbers that are divisible by both 3 and 5 (and still print
-`"Fizz"` or `"Buzz"` for numbers divisible by only one of those).
-
-(This is actually an ((interview question)) that has been claimed to
-weed out a significant percentage of programmer candidates. So if you
-solved it, you're now allowed to feel good about yourself.)
-
-ifdef::interactive_target[]
-[source,javascript]
-----
-// Your code here.
-----
-endif::interactive_target[]
-
-!!hint!!
-
-(((FizzBuzz (exercise))))(((remainder operator)))(((% operator)))Going
-over the numbers is clearly a looping job, and selecting what to print
-is a matter of conditional execution. Remember the trick of using the
-remainder (`%`) operator for checking whether a number is divisible by
-another number (has a remainder of zero).
-
-In the first version, there are three possible outcomes for every
-number, so you'll have to create an `if`/`else if`/`else` chain.
-
-(((|| operator)))(((if keyword,chaining)))The second version of the
-program has a straightforward solution and a clever one. The simple
-way is to add another “branch” to precisely test the given condition.
-For the clever method, build up a string containing the word or words
-to output, and print either this word or the number if there is no
-word, potentially by making elegant use of the `||` operator.
-
-!!hint!!
-
-=== Chess board ===
-
-(((chess board (exercise))))(((loop)))(((nesting,of loops)))(((newline
-character)))Write a program that creates a string that represents an
-8×8 grid, using newline characters to separate lines. At each position
-of the grid there is either a space or a “#” character. The characters
-should form a chess board.
-
-Passing this string to `console.log` should show something like this:
-
-----
+# # # #
+# # # #
  # # # #
-# # # # 
+# # # #
  # # # #
-# # # # 
+# # # #
  # # # #
-# # # # 
- # # # #
-# # # # 
-----
-
-When you have a program that generates this pattern, define a
-((variable)) `size = 8` and change the program so that it works for
-any `size`, outputting a grid of the given width and height.
-
-ifdef::interactive_target[]
-[source,javascript]
-----
-// Your code here.
-----
-endif::interactive_target[]
-
-!!hint!!
-
-(((chess board (exercise))))The string can be built by starting with
-an empty one (`""`) and repeatedly adding characters. A newline
-character is written `"\n"`.
-
-Use `console.log` to inspect the output of your program.
-
-(((nesting,of loops)))To work with two ((dimensions)), you will need a
-((loop)) inside of a loop. Put ((curly braces)) around the bodies of
-both loops to make it easy to see where they start and end. Try to
-properly indent these bodies. The order of the loops must follow the
-order in which we build up the string (line by line, left to right,
-top to bottom). So the outer loop handles the lines and the inner loop
-handles the characters on a line.
-
-(((counter variable)))(((remainder operator)))(((% operator)))You'll
-need two variables to track your progress. To know whether to put a
-space or a hash sign at a given position, you could test whether the
-sum of the two counters is even (`% 2`).
-
-Terminating a line by adding a newline character happens after the
-line has been built up, so do this after the inner loop but inside of
-the outer loop.
-
-!!hint!!
+# # # #
+Jab apke pass isss upper wale pattern ko generate karne ka program hoga ,aise hi ek variable size = 8 defined karo aur program tab bhi chlana chahiye jab size ki value kuch bhi ho.
