@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :chap_num: 4
 = Data Structures: Objects and Arrays =
 
@@ -13,17 +14,29 @@ Mr. Babbage, yadi aap masheen mei galat aankade daalate hain, to sahee
 javaab hokar nikalate hain? [...] main iss tarah ki jaanakari ko hasil karne mein saksham nahin hoon
 Bhadkane wale saval se vicharon ka bhram ho sakta hain.
 ____
+=======
+Chapter 4
+Data Structures: Objects and Arrays
+>>>>>>> 717a6c22051e8af35ea04d23d9a346730495cad8
 
-(((Babbage+++,+++ Charles)))(((object)))(((data structure)))Numbers, Booleans, and strings are the
+Numbers, Booleans, and strings are the
 bricks that ((data)) structures are built from. But you can't make
 much of a house out of a single brick. _Objects_ allow us to group
 values—including other objects—together and thus build more complex
 structures.
+<<<<<<< HEAD
 
 #hindi#
 (((Babbage+++,+++ Charles)))(((object)))(((data structure)))Number, Booleans, aur strings yah sab
 bricks ((data)) hote hain. Lekin ham single bricks se house nahi bana sakta hain par _Objects_group values allow
 karta hain aur object ke sath ham jyada complex structures bana sakte hain.
+=======
+#
+nambar, booliyan, aur strings hain
+eeton ki ((data)) dhache se bana hain lekin aap nahin bana sakte
+ek eent mein se adhik ek ghar _objects_ hamen group ke liye anumati deta hai
+or vastuon sahit  objects—together aur is prakaar adhik jatil structures banaate hain
+>>>>>>> 717a6c22051e8af35ea04d23d9a346730495cad8
 
 The programs we have built so far have been seriously hampered by the
 fact that they were operating only on simple data types. This chapter
