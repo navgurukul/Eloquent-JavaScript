@@ -9,23 +9,13 @@ programmers, in turn, tend to introduce mistakes (_((bug))s_) into
 programs. A large program also provides a lot of space for these bugs
 to hide, making them hard to find.
 
-///** HINDI **// 
+///** HINDI **//
 
-(((prograam aakaar))) ek bada kaaryakram mahanga kaaryakram
-hai, na ki bas kyonki us samay ke nirmaan ke lie leta hai aakaar lagabhag
-hamesha shaamil hota hai (jatilata)), aur jatilata prograamar ko bhramit
-karatee hai pareshaan prograamar, badale mein, galatiyon ko shuroo karate hain
-(_ ((bag)) s_) mein kaaryakram. ek bada kaaryakram in bagon ke lie bahut saare
-sthaan pradaan karata hai chhupaane ke lie, unhen khojane ke lie mushkil bana
-rahee hai
+(((program size))) yah program bada aur costly hain lekin isse build karne me time lagta hain,
+size hamesha programmer ko confused karta hain. Bugs program main mistakes ko dikhata hain.
+Ek bada program bugs ke liye bada space deta hain jisse usse find karne mei muskile hoti hain.
 
-________________________________________________________________________________finish
 
-(((summing example)))Let's briefly go back to the final two example
-programs in the introduction. The first is self-contained and six
-lines long.
-
-//**HINDI**//
 Hum ab 2 example lenge jo humne Introduction chapter mei pade the.
 To pehla example six lines lamba aur self contained hai.
 
@@ -39,9 +29,6 @@ while (count <= 10) {
 console.log(total);
 ----
 
-The second relies on two external functions and is one line long.
-
-//**HINDI**//
 Aur seccond 2 bahari function par depend karta hhai aur wo 1 line ka hai.
 
 
@@ -50,23 +37,7 @@ Aur seccond 2 bahari function par depend karta hhai aur wo 1 line ka hai.
 console.log(sum(range(1, 10)));
 ----
 
-Which one is more likely to contain a bug?
-If we count the size of the definitions of `sum` and
-`range`, the second program is also big—even bigger than the first.
-But still, I'd argue that it is more likely to be correct.
-It is more likely to be correct because the solution is expressed in a ((vocabulary)) that
-corresponds to the problem being solved. Summing a range of
-numbers isn't about loops and counters. It is about ranges and sums.
-
-
-The definitions of this vocabulary (the functions `sum` and `range`)
-will still involve loops, counters, and other incidental details. But
-because they are expressing simpler concepts than the program as a
-whole, they are easier to get right.
-
-
-//**HINDI**//
-Upper wale dono examples mei se kismei bug hai mtlb todi bahut galti hai?
+Upper wale dono examples mei se kisi mei bug hai mtlb todi bahut galti hai?
 Agar hum 'sum' aur 'range' ki defination ka size count kare to, Second program bada hai first se.lekin hum abhi bhi second example ko correct kahenge.kyuki uska solution problem solve krne se related karta hai aur kam code bhi hai.
 Numbers ki range loops aur counters par depend ni karti wo keval ranges and sums par depend karti hai.
 
@@ -408,7 +379,7 @@ data storage and communication format on the Web.
 (((array)))(((object)))(((quoting,in JSON)))(((comment)))JSON is similar to
 JavaScript's way of writing arrays and objects, with a few
 restrictions. All property names have to be surrounded by double quotes, and
-only simple data expressions are allowed—no function calls, 
+only simple data expressions are allowed—no function calls,
 variables, or anything that involves actual computation. Comments are not
 allowed in JSON.
 
@@ -1052,7 +1023,7 @@ that maps group names to arrays of group members.
 method)))(((some method)))(((array,methods)))(((&& operator)))(((||
 operator)))Arrays also come with the standard methods `every` and
 `some`. Both take a predicate function that, when called with an array
-element as argument, returns true or false. Just like `&&` 
+element as argument, returns true or false. Just like `&&`
 returns a true value only when the expressions on both sides are true,
 `every` returns true only when the predicate returns true for _all_
 elements of the array. Similarly, `some` returns true as soon as the
