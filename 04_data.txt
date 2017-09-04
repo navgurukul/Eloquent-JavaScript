@@ -14,7 +14,6 @@ Mr. Babbage, if you put into the machine wrong figures, will the right
 answers come out?’ [...] I am not able rightly to apprehend the kind
 of confusion of ideas that could provoke such a question.
 ____
-
 (((Babbage+++,+++ Charles)))(((object)))(((data structure)))Numbers, Booleans, and strings are the
 bricks that ((data)) structures are built from. But you can't make
 much of a house out of a single brick. _Objects_ allow us to group

@@ -1,33 +1,5 @@
-:chap_num: 5
-:prev_link: 04_data
-:next_link: 06_object
-:load_files: ["code/ancestry.js", "code/chapter/05_higher_order.js", "code/intro.js"]
-:zip: node/html
-
-= Higher-Order Functions =
-
-ifdef::interactive_target[]
-
-[chapterquote="true"]
-[quote, Master Yuan-Ma, The Book of Programming]
-____
-Tzu-li and Tzu-ssu were
-boasting about the size of their latest programs. ‘Two-hundred
-thousand lines,’ said Tzu-li, ‘not counting comments!’ Tzu-ssu
-responded, ‘Pssh, mine is almost a *million* lines already.’ Master
-Yuan-Ma said, ‘My best program has five hundred lines.’ Hearing this,
-Tzu-li and Tzu-ssu were enlightened.
-____
-
-endif::interactive_target[]
-
-[chapterquote="true"]
-[quote, C.A.R. Hoare, 1980 ACM Turing Award Lecture]
-____
-(((Hoare+++,+++ C.A.R.)))There are two ways of constructing a software
-design: One way is to make it so simple that there are obviously no
-deficiencies, and the other way is to make it so complicated that
-there are no obvious deficiencies.
+Chapter 5
+Higher-Order Functions[quote, Master Yuan-Ma, The Book of Programming]
 ____
 
 (((program size)))A large program is a costly program, and not just
@@ -36,6 +8,19 @@ because of the time it takes to build. Size almost always involves
 programmers, in turn, tend to introduce mistakes (_((bug))s_) into
 programs. A large program also provides a lot of space for these bugs
 to hide, making them hard to find.
+
+
+///** HINDI **// 
+
+(((prograam aakaar))) ek bada kaaryakram mahanga kaaryakram
+hai, na ki bas kyonki us samay ke nirmaan ke lie leta hai aakaar lagabhag
+hamesha shaamil hota hai (jatilata)), aur jatilata prograamar ko bhramit
+karatee hai pareshaan prograamar, badale mein, galatiyon ko shuroo karate hain
+(_ ((bag)) s_) mein kaaryakram. ek bada kaaryakram in bagon ke lie bahut saare
+sthaan pradaan karata hai chhupaane ke lie, unhen khojane ke lie mushkil bana
+rahee hai
+
+
 
 (((summing example)))Let's briefly go back to the final two example
 programs in the introduction. The first is self-contained and six
