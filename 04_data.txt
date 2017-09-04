@@ -1,32 +1,13 @@
-:chap_num: 4
-:prev_link: 03_functions
-:next_link: 05_higher_order
-:load_files: ["code/jacques_journal.js", "code/chapter/04_data.js"]
-:zip: node/html
+Chapter 4
+Data Structures: Objects and Arrays
 
-= Data Structures: Objects and Arrays =
-
-[chapterquote="true"]
-[quote, Charles Babbage, Passages from the Life of a Philosopher (1864)]
-____
-On two occasions I have been asked, ‘Pray,
-Mr. Babbage, if you put into the machine wrong figures, will the right
-answers come out?’ [...] I am not able rightly to apprehend the kind
-of confusion of ideas that could provoke such a question.
-#
-mujhe do avsaron pe pucha gaya prarthana krne kleay
-Mr. Babbage, yadi aap masheen mei galat aankade daalate hain, to sahee
-javaab hokar nikalate hain? [...] main is tarah kee jaanakaaree ko haasil karane mein saksham nahin hoon
-aise vichaaron ke bhram kee vajah se jo is tarah ke savaal ko bhadak saken
-____
-
-(((Babbage+++,+++ Charles)))(((object)))(((data structure)))Numbers, Booleans, and strings are the
+Numbers, Booleans, and strings are the
 bricks that ((data)) structures are built from. But you can't make
 much of a house out of a single brick. _Objects_ allow us to group
 values—including other objects—together and thus build more complex
 structures.
 #
-(((Babbage+++,+++ Charles)))(((object)))(((data structure)))nambar, booliyan, aur strings hain
+nambar, booliyan, aur strings hain
 eeton ki ((data)) dhache se bana hain lekin aap nahin bana sakte
 ek eent mein se adhik ek ghar _objects_ hamen group ke liye anumati deta hai
 or vastuon sahit  objects—together aur is prakaar adhik jatil structures banaate hain
