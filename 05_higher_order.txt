@@ -9,7 +9,6 @@ programmers, in turn, tend to introduce mistakes (_((bug))s_) into
 programs. A large program also provides a lot of space for these bugs
 to hide, making them hard to find.
 
-
 ///** HINDI **// 
 
 (((prograam aakaar))) ek bada kaaryakram mahanga kaaryakram
@@ -26,6 +25,10 @@ rahee hai
 programs in the introduction. The first is self-contained and six
 lines long.
 
+//**HINDI**//
+Hum ab 2 example lenge jo humne Introduction chapter mei pade the.
+To pehla example six lines lamba aur self contained hai.
+
 [source,javascript]
 ----
 var total = 0, count = 1;
@@ -38,26 +41,37 @@ console.log(total);
 
 The second relies on two external functions and is one line long.
 
+//**HINDI**//
+Aur seccond 2 bahari function par depend karta hhai aur wo 1 line ka hai.
+
+
 [source,javascript]
 ----
 console.log(sum(range(1, 10)));
 ----
 
 Which one is more likely to contain a bug?
-
-(((program size)))If we count the size of the definitions of `sum` and
+If we count the size of the definitions of `sum` and
 `range`, the second program is also big—even bigger than the first.
 But still, I'd argue that it is more likely to be correct.
-
-(((abstraction)))(((domain-specific language)))It is more likely to
-be correct because the solution is expressed in a ((vocabulary)) that
+It is more likely to be correct because the solution is expressed in a ((vocabulary)) that
 corresponds to the problem being solved. Summing a range of
 numbers isn't about loops and counters. It is about ranges and sums.
+
 
 The definitions of this vocabulary (the functions `sum` and `range`)
 will still involve loops, counters, and other incidental details. But
 because they are expressing simpler concepts than the program as a
 whole, they are easier to get right.
+
+
+//**HINDI**//
+Upper wale dono examples mei se kismei bug hai mtlb todi bahut galti hai?
+Agar hum 'sum' aur 'range' ki defination ka size count kare to, Second program bada hai first se.lekin hum abhi bhi second example ko correct kahenge.kyuki uska solution problem solve krne se related karta hai aur kam code bhi hai.
+Numbers ki range loops aur counters par depend ni karti wo keval ranges and sums par depend karti hai.
+
+'sum' aur 'range' ki definitions mei abhi bhi loops aur counters available hai.kyuki isse hume pure program ka flow pta chlta hai aur isse kisi bhi concept ko aaram se smjh sakte hai.
+
 
 == Abstraction ==
 
