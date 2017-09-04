@@ -1,23 +1,17 @@
 :chap_num: 4
-:prev_link: 03_functions
-:next_link: 05_higher_order
-:load_files: ["code/jacques_journal.js", "code/chapter/04_data.js"]
-:zip: node/html
-
 = Data Structures: Objects and Arrays =
 
-[chapterquote="true"]
-[quote, Charles Babbage, Passages from the Life of a Philosopher (1864)]
-____
+
 On two occasions I have been asked, ‘Pray,
 Mr. Babbage, if you put into the machine wrong figures, will the right
 answers come out?’ [...] I am not able rightly to apprehend the kind
 of confusion of ideas that could provoke such a question.
-#
-mujhe do avsaron pe pucha gaya prarthana krne kleay
+
+#hindi#
+mujh se do avsaron pe pucha gaya pray karne ke liye
 Mr. Babbage, yadi aap masheen mei galat aankade daalate hain, to sahee
-javaab hokar nikalate hain? [...] main is tarah kee jaanakaaree ko haasil karane mein saksham nahin hoon
-aise vichaaron ke bhram kee vajah se jo is tarah ke savaal ko bhadak saken
+javaab hokar nikalate hain? [...] main iss tarah ki jaanakari ko hasil karne mein saksham nahin hoon
+Bhadkane wale saval se vicharon ka bhram ho sakta hain.
 ____
 
 (((Babbage+++,+++ Charles)))(((object)))(((data structure)))Numbers, Booleans, and strings are the
@@ -25,32 +19,28 @@ bricks that ((data)) structures are built from. But you can't make
 much of a house out of a single brick. _Objects_ allow us to group
 values—including other objects—together and thus build more complex
 structures.
-#
-(((Babbage+++,+++ Charles)))(((object)))(((data structure)))nambar, booliyan, aur strings hain
-eeton ki ((data)) dhache se bana hain lekin aap nahin bana sakte
-ek eent mein se adhik ek ghar _objects_ hamen group ke liye anumati deta hai
-or vastuon sahit  objects—together aur is prakaar adhik jatil structures banaate hain
+
+#hindi#
+(((Babbage+++,+++ Charles)))(((object)))(((data structure)))Number, Booleans, aur strings yah sab
+bricks ((data)) hote hain. Lekin ham single bricks se house nahi bana sakta hain par _Objects_group values allow
+karta hain aur object ke sath ham jyada complex structures bana sakte hain.
 
 The programs we have built so far have been seriously hampered by the
 fact that they were operating only on simple data types. This chapter
 will add a basic understanding of data structures to your toolkit. By
 the end of it, you'll know enough to start writing some useful
 programs.
-#
-ab tak hamane jo programs banae hain, use gambheerata se baadhit kiya gaya hai
-fact yah hai ki ve keval saral data types par kaam kar rahe the. yah chapter
-aapake basic mein data structures kee toolkit samajh ke jod dega. dvaara
-isake last mein, aap kuchh upayogee likhana shuroo karane ke lie useful programs jaanate honge
+
+#hindi#
+Ab tak hamne jo program banaye hain, usse baadhit kiya gaya hai
+fact yah hai ki keval simple data types par kaam kar rahe the. yah chapter
+aapake basic data structures ko samjhne me madad karenga. iske last mei app itne able ho jayenge ki app
+ek useful program start kar sakte hain.
 
 The chapter will work through a more or less realistic programming
 example, introducing concepts as they apply to the problem at hand.
 The example code will often build on functions and variables that were
 introduced earlier in the text.
-#
-Chapter adhik ya kam prograaming ke maadhyam se kaam karega
-example ke liye, introducing ko present karana kyonki ve samasya par haath mein lage hote hain.
-Jo example hain wo code function aur veriebal build karta hain par banaayega jo ki the
-pahale paath mein introduced kiya hain.
 
 ifdef::book_target[]
 
