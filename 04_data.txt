@@ -11,10 +11,20 @@ aapake basic data structures ko samjhne me madad karenga. iske last mei app
 itne able ho jayenge ki app ek useful program start kar sakte hain.
 
 
+<<<<<<< HEAD
 chapter adhik ya kam yatarthvadi prograaming ke madhyam se kaam karega,
 introduction ko pesh karane ke saath-saath uski samsya hamare hatho me 
 hoti hain. udaaharan kod aksar functions and variables par banaya jayega
 ki jaise pehle text me introduced kiya gya tha.
+=======
+chapter adhik ya kaam ke maadhyam se prograaming ke maadhyam se kaam karega
+udaaharan ke lie, concepts ko prastut karana kyonki ve samasya par haath mein laagoo hote hain.
+udaaharan code praayah functions aur veriebal par banaayega jo ki the
+pahale paath mein pesh kiya
+
+
+ifdef::book_target[]
+>>>>>>> 0e62e6855e619b6d99fc93cc7458338d7db6b24d
 
 
 Online coding book ke liye,
