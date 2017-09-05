@@ -5,23 +5,18 @@ Jaise ek house banane k liye hume bahut sari eeton ki jrurat hoti hia thik ussi 
 objects banate time hum or bhi bahut sare objects use kar sakte hia matalab ek object ko banane k liye hum dusre objects karenge aur isse humare data structure or bhi jayda complex ho jayega.
 
 
-The programs we have built so far have been seriously hampered by the
-fact that they were operating only on simple data types. This chapter
-will add a basic understanding of data structures to your toolkit. By
-the end of it, you'll know enough to start writing some useful
-programs.
-
-#hindi#
 Ab tak hamne jo program banaye hain, usse baadhit kiya gaya hai
 fact yah hai ki keval simple data types par kaam kar rahe the. yah chapter
-aapake basic data structures ko samjhne me madad karenga. iske last mei app itne able ho jayenge ki app
-ek useful program start kar sakte hain.
+aapake basic data structures ko samjhne me madad karenga. iske last mei app 
+itne able ho jayenge ki app ek useful program start kar sakte hain.
 
-The chapter will work through a more or less realistic programming
-example, introducing concepts as they apply to the problem at hand.
-The example code will often build on functions and variables that were
-introduced earlier in the text.
 
+<<<<<<< HEAD
+chapter adhik ya kam yatarthvadi prograaming ke madhyam se kaam karega,
+introduction ko pesh karane ke saath-saath uski samsya hamare hatho me 
+hoti hain. udaaharan kod aksar functions and variables par banaya jayega
+ki jaise pehle text me introduced kiya gya tha.
+=======
 chapter adhik ya kaam ke maadhyam se prograaming ke maadhyam se kaam karega
 udaaharan ke lie, concepts ko prastut karana kyonki ve samasya par haath mein laagoo hote hain.
 udaaharan code praayah functions aur veriebal par banaayega jo ki the
@@ -29,14 +24,10 @@ pahale paath mein pesh kiya
 
 
 ifdef::book_target[]
+>>>>>>> 0e62e6855e619b6d99fc93cc7458338d7db6b24d
 
-(((sandbox)))The online coding sandbox for the book
-(http://eloquentjavascript.net/code[_eloquentjavascript.net/code_])
-provides a way to run code in the context of a specific chapter. If
-you decide to work through the examples in another environment, be
-sure to first download the full code for this chapter from the
-sandbox page.
 
+<<<<<<< HEAD
 (((sandbox)))kitaab ke lie online koding sandbox
 (http://eloquentjavascript.net/code[_eloquentjavascript.net/code_])
 ek vishisht adhyaay ke sandarbh mein code chalaane ka ek tareeka pradaan karata hai agar
@@ -46,6 +37,8 @@ sandbox page.
 
 
 #hindi#
+=======
+>>>>>>> 4e1a107f8eb44f93eedde72c200b170df2a76d8c
 Online coding book ke liye,
 (http://eloquentjavascript.net/code[_eloquentjavascript.net/code_])
 agar apne decide kiya hain dusre environment example mei kaam karne ka
