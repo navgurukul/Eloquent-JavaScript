@@ -15,13 +15,19 @@ with them. You wanted a banana but what you got was a gorilla holding
 the banana and the entire jungle.
 ____
 
-(((Armstrong+++,+++ Joe)))(((object)))(((holy war)))When a programmer
-says “object”, this is a loaded term. In my profession, objects are a
-way of life, the subject of holy wars, and a beloved buzzword that
-still hasn't quite lost its power.
+(((Armstrong+++,+++ Joe)))(((object)))(((holy war)))When a programmer says “object”, this is a loaded term. In my profession, objects are a
+way of life, the subject of holy wars, and a beloved buzzword that still hasn't quite lost its power.
+
+///** HINDI **//
+jab ek programmer kehta hai ki "object" yah ek loaded term hai. mera beloved buzzworde peshe me, object ek rasta hai hamre life ka,aur ye holy wars ka subject hai,aur ek pyari behas hai ki abhi apni power kho kar bh kafi chije kar rha hai.
+
 
 To an outsider, this is probably a little confusing. Let's start with
 a brief ((history)) of objects as a programming construct.
+
+///** HINDI **//
+ek bahari log ke liye, ye shayad thoda confusing hai.aiye shuru karte hai or jante hai iske program ke history aur iske nirman ke bare me..
+
 
 == History ==
 
@@ -31,6 +37,13 @@ made manageable by separating it into small compartments that are
 isolated from each other. These compartments have ended up with the
 name _objects_.
 
+///** HINDI **//
+ye story jo hai ek programming ki tarah hai, shuru karte hai problem ki uljhan ke sath. ek philosophy  yah hai ki uljhan ko alag karake manageable banaaya ja sakata hai ye ek chote compartments jo ki alag rehta hai ek dusre se. ye compartments mein name _objects ke saath samaapt ho gaya hai.
+
+
+
+
+
 [[interface]]
 (((complexity)))(((encapsulation)))(((method)))(((interface)))An
 object is a hard shell that hides the gooey complexity inside it
@@ -39,6 +52,14 @@ that present an _interface_ through which the object is to be used.
 The idea is that the interface is relatively simple and all the
 complex things going on _inside_ the object can be ignored when
 working with it.
+
+
+
+///** HINDI **//
+ek object hard shell ki tarah hai jo andhruni jatilta ke andar le jata hai ye aur 
+
+
+
 
 image::img/object.jpg[alt="A simple interface can hide a lot of complexity.",width="6cm"]
 

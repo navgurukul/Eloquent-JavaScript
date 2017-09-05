@@ -1,33 +1,5 @@
-:chap_num: 5
-:prev_link: 04_data
-:next_link: 06_object
-:load_files: ["code/ancestry.js", "code/chapter/05_higher_order.js", "code/intro.js"]
-:zip: node/html
-
-= Higher-Order Functions =
-
-ifdef::interactive_target[]
-
-[chapterquote="true"]
-[quote, Master Yuan-Ma, The Book of Programming]
-____
-Tzu-li and Tzu-ssu were
-boasting about the size of their latest programs. ‘Two-hundred
-thousand lines,’ said Tzu-li, ‘not counting comments!’ Tzu-ssu
-responded, ‘Pssh, mine is almost a *million* lines already.’ Master
-Yuan-Ma said, ‘My best program has five hundred lines.’ Hearing this,
-Tzu-li and Tzu-ssu were enlightened.
-____
-
-endif::interactive_target[]
-
-[chapterquote="true"]
-[quote, C.A.R. Hoare, 1980 ACM Turing Award Lecture]
-____
-(((Hoare+++,+++ C.A.R.)))There are two ways of constructing a software
-design: One way is to make it so simple that there are obviously no
-deficiencies, and the other way is to make it so complicated that
-there are no obvious deficiencies.
+Chapter 5
+Higher-Order Functions[quote, Master Yuan-Ma, The Book of Programming]
 ____
 
 (((program size)))A large program is a costly program, and not just
@@ -37,32 +9,48 @@ programmers, in turn, tend to introduce mistakes (_((bug))s_) into
 programs. A large program also provides a lot of space for these bugs
 to hide, making them hard to find.
 
-(((summing example)))Let's briefly go back to the final two example
-programs in the introduction. The first is self-contained and six
-lines long.
 
-[source,javascript]
-----
-var total = 0, count = 1;
-while (count <= 10) {
-  total += count;
-  count += 1;
-}
-console.log(total);
-----
+///** HINDI **// 
+
+(((prograam aakaar))) ek bada kaaryakram mahanga kaaryakram
+hai, na ki bas kyonki us samay ke nirmaan ke lie leta hai aakaar lagabhag
+hamesha shaamil hota hai (jatilata)), aur jatilata prograamar ko bhramit
+karatee hai pareshaan prograamar, badale mein, galatiyon ko shuroo karate hain
+(_ ((bag)) s_) mein kaaryakram. ek bada kaaryakram in bagon ke lie bahut saare
+sthaan pradaan karata hai chhupaane ke lie, unhen khojane ke lie mushkil bana
+rahee hai
+
+
+
+(((summing example)))Let's briefly go back to the final two example programs
+in the introduction. The first is self-contained and six lines long.
+
+///** HINDII **//
+aaiye do udharan ko bare me jante hai. pehla example 6 line lamba hai
+
+
+[source,javascript] ---- var total = 0, count = 1; while (count <= 10) {
+total += count;   count += 1; } console.log(total); ----
 
 The second relies on two external functions and is one line long.
 
-[source,javascript]
-----
-console.log(sum(range(1, 10)));
-----
+[source,javascript] ---- console.log(sum(range(1, 10))); ----
 
-Which one is more likely to contain a bug?
+Which one is more likely to contain a bug? 
+///** HINDI **// 
+kaun sa ek bag ke hone kee sambhaavana hai?
+
 
 (((program size)))If we count the size of the definitions of `sum` and
-`range`, the second program is also big—even bigger than the first.
-But still, I'd argue that it is more likely to be correct.
+`range`, the second program is also big—even bigger than the first. But still,
+I'd argue that it is more likely to be correct. -----------
+
+///** HINDI **// (((prograam ka aakaar))) yadi ham `sum` ke paribhaashaon ka
+aakaar maanate hain aur `range`, doosara prograam bhi bada hai-pahale ke
+tulana mein bhi bada hai lekin phir bhi, main tark krta hoon ki yah sahi
+hone ke adhik sambhaavana hai.
+
+
 
 (((abstraction)))(((domain-specific language)))It is more likely to
 be correct because the solution is expressed in a ((vocabulary)) that
@@ -74,11 +62,22 @@ will still involve loops, counters, and other incidental details. But
 because they are expressing simpler concepts than the program as a
 whole, they are easier to get right.
 
+
+
+
 == Abstraction ==
 
 In the context of programming, these kinds of vocabularies are usually
 called _((abstraction))s_. Abstractions hide details and give us the
 ability to talk about problems at a higher (or more abstract) level.
+
+///** HINDI **// 
+programming ke sandarbh mevocubularies ke in prakar ko aam tour pe
+((abstraction)) kaha jata hai. Abstractions vivaran chhipaane ke liye aur 
+hamen ek kuch (ya adhik abstract) samasyaon ke baare me janne ka sahi tarika hai
+________________________________________________________________________________finish
+
+
 
 (((recipe analogy)))(((pea soup)))As an analogy, compare these two
 recipes for pea soup:
