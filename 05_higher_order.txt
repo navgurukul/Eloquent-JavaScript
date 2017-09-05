@@ -10,9 +10,10 @@ programs. A large program also provides a lot of space for these bugs
 to hide, making them hard to find.
 
 
-///** HINDI **// 
 
-(((prograam aakaar))) ek bada kaaryakram mahanga kaaryakram
+///** HINDI **//
+
+(((program size))) ek bada program mahanga kaaryakram
 hai, na ki bas kyonki us samay ke nirmaan ke lie leta hai aakaar lagabhag
 hamesha shaamil hota hai (jatilata)), aur jatilata prograamar ko bhramit
 karatee hai pareshaan prograamar, badale mein, galatiyon ko shuroo karate hain
@@ -394,7 +395,7 @@ data storage and communication format on the Web.
 (((array)))(((object)))(((quoting,in JSON)))(((comment)))JSON is similar to
 JavaScript's way of writing arrays and objects, with a few
 restrictions. All property names have to be surrounded by double quotes, and
-only simple data expressions are allowed—no function calls, 
+only simple data expressions are allowed—no function calls,
 variables, or anything that involves actual computation. Comments are not
 allowed in JSON.
 
@@ -1038,7 +1039,7 @@ that maps group names to arrays of group members.
 method)))(((some method)))(((array,methods)))(((&& operator)))(((||
 operator)))Arrays also come with the standard methods `every` and
 `some`. Both take a predicate function that, when called with an array
-element as argument, returns true or false. Just like `&&` 
+element as argument, returns true or false. Just like `&&`
 returns a true value only when the expressions on both sides are true,
 `every` returns true only when the predicate returns true for _all_
 elements of the array. Similarly, `some` returns true as soon as the
