@@ -2,22 +2,20 @@ Chapter 5
 Higher-Order Functions[quote, Master Yuan-Ma, The Book of Programming]
 ____
 
-(((program size)))A large program is a costly program, and not just
-because of the time it takes to build. Size almost always involves
-((complexity)), and complexity confuses programmers. Confused
-programmers, in turn, tend to introduce mistakes (_((bug))s_) into
-programs. A large program also provides a lot of space for these bugs
-to hide, making them hard to find.
 
-<<<<<<< HEAD
+
 
 
 (((program size)))ek bada kaaryakram mahanga kaaryakram hai, na ki bas
 kyonki us samay ke nirmaan ke lie leta hai aakaar lagabhag hamesha shaamil hota hai
 (complexity)), aur jatilata prograamar ko bhramit karatee hai pareshaan
-prograamar, badale mein, galatiyon ko shuroo karate hain (_ ((bag)) s_) mein
-kaaryakram. ek bada kaaryakram in bagon ke lie bahut saare sthaan pradaan karata hai
-chhipaane ke lie, unhen dhoondhana kathin bana deta hai
+prograamar, badale mein, galatiyon ko shuroo karate hain (_ ((bug))s_) mein
+kaaryakram. ek bada kaaryakram in space ke lie bahut saare sthaan pradan karata hai
+chhipaane ke liye, unhen dhoondhana kathin bana deta hai.
+
+
+<<<<<<< HEAD
+
 
 
 ///** HINDI **//
@@ -48,7 +46,7 @@ Hum ab 2 example lenge jo humne Introduction chapter mei pade the.
 To pehla example six lines lamba aur self contained hai.
 >>>>>>> 3fb5d8b25225e97334fc7e7bd14154a66968ba61
 
-///** HINDI **// 
+///** HINDI **//
 
 (((prograam aakaar))) ek bada kaaryakram mahanga kaaryakram
 hai, na ki bas kyonki us samay ke nirmaan ke lie leta hai aakaar lagabhag
@@ -75,8 +73,8 @@ Aur seccond 2 bahari function par depend karta hhai aur wo 1 line ka hai.
 
 [source,javascript] ---- console.log(sum(range(1, 10))); ----
 
-Which one is more likely to contain a bug? 
-///** HINDI **// 
+Which one is more likely to contain a bug?
+///** HINDI **//
 kaun sa ek bag ke hone kee sambhaavana hai?
 
 <<<<<<< HEAD
@@ -114,9 +112,9 @@ In the context of programming, these kinds of vocabularies are usually
 called _((abstraction))s_. Abstractions hide details and give us the
 ability to talk about problems at a higher (or more abstract) level.
 
-///** HINDI **// 
+///** HINDI **//
 programming ke sandarbh mevocubularies ke in prakar ko aam tour pe
-((abstraction)) kaha jata hai. Abstractions vivaran chhipaane ke liye aur 
+((abstraction)) kaha jata hai. Abstractions vivaran chhipaane ke liye aur
 hamen ek kuch (ya adhik abstract) samasyaon ke baare me janne ka sahi tarika hai
 ________________________________________________________________________________finish
 
