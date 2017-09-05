@@ -1,3 +1,66 @@
+<<<<<<< HEAD
+:chap_num: 3
+:prev_link: 02_program_structure
+:next_link: 04_data
+
+= Functions =
+
+[chapterquote="true"]
+[quote, Donald Knuth]
+____
+People think that computer science is the art of
+geniuses but the actual reality is the opposite, just many people
+doing things that build on each other, like a wall of mini stones.
+____
+
+(((Knuth+++,+++ Donald)))(((function)))(((code structure)))You've seen function values, such
+as `alert`, and how to call them. Functions are the bread and butter
+of JavaScript programming. The concept of wrapping a piece of program
+in a value has many uses. It is a tool to structure larger programs,
+to reduce repetition, to associate names with subprograms, and to
+isolate these subprograms from each other.
+
+(function value, jaise, ki chetawani aur uhne kaise call krna hai. function bread or butter ka mixture hota h wese hi Javascript me programming jruri hai.jo program ki value hai jab usko concept ke andr rakhte hai to wo kai tarike se use hoti hai. ye bade program bnane ka tool hai, ye repetation ko kam krta hai, ye sabprogram ke naam ke saath sahyogita krata hai, aur in programo ko ek dusre se alag alag rakhna jaisi chije.) 
+
+
+
+(((human language)))The most obvious application of functions is
+defining new ((vocabulary)). Creating new words in regular,
+human-language prose is usually bad style. But in programming, it is
+indispensable.
+
+(sabse jahir upyog function ki ye hai ki nye sabad ko define krta hai jo ki human language hai. rojana nye word banana, human laguage me gaap sadharan tah galat andaj/tarika hai. par programing me ye aavayshak hai.)
+
+
+
+
+(((abstraction)))Typical adult English speakers have some 20,000 words
+in their vocabulary. Few programming languages come with 20,000
+commands built in. And the vocabulary that _is_ available tends to be
+more precisely defined, and thus less flexible, than in human
+language. Therefore, we usually _have_ to add some of our own
+vocabulary to avoid repeating ourselves too much.
+
+(ek comman adult ke sabadkosh me genrally 20 hajar shabad hote hai. kuch programming languages bh 20 hajar command ke define hote hai.
+aur jo shabadkosh avalble hota hai wo aur thik tarike se define hota hai, aur isliye human laguage se kam flexibble hota hai. isliye usually apni sabadkosh ko add krte hai jisse hum apni baar dohrane ki aadat ka virodh kar sake.)
+
+
+
+
+== Defining a function ==
+
+(((square)))(((function,definition)))A function definition is just a
+regular ((variable)) definition where the value given to the variable
+happens to be a function. For example, the following code defines the
+variable `square` to refer to a function that produces the square of a
+given number:
+
+jo function hai wo sirf ek dafination hai jo regular varible me given value ko function sabit karta hai. udharan ke liye: diya hua code ek square variable ko define karta hai jo ye refer karta hai ki given number ka square kar denewala function hai.
+
+
+[source,javascript]
+----
+=======
 Chapter 3
 program structure
 
@@ -24,17 +87,46 @@ Defining a function
 Jaise variable hote hai vaise hi function bhi hote hai ,jaise hum variable ko value dete hai vaise function mei code(value dete hai) likhte  hai fir usko hum as a variable kahi bhi use kar sakte hai. For example,ye niche diya hua code ek square nam ke variable mei ek function dalta hai jismei humne kisi ek number ka square return kiya hai:
 
 
+>>>>>>> 3fb5d8b25225e97334fc7e7bd14154a66968ba61
 var square = function(x) {
   return x * x;
 };
 `
 console.log(square(12));
 // → 144
+<<<<<<< HEAD
+----
+
+indexsee:[braces,curly braces]
+(((curly braces)))(((block)))(((syntax)))(((function
+keyword)))(((function,body)))(((function,as value)))A function is
+created by an expression that starts with the keyword `function`.
+Functions have a set of _((parameter))s_ (in this case, only `x`) and
+a _body_, which contains the statements that are to be executed when
+the function is called. The function body must always be wrapped in
+braces, even when it consists of only a single ((statement)) (as
+in the previous example).
+
+function ek experssion/abhivyakat hai jo ki function ke keyword se shuru hai, function ne ((parameter))s_ (in this case, only `x`) aur
+a _body_, ko set kar rakha hai, jisme statement moujood hai ki jisse wo executed hota hai jab function ko kaha jata hai. 
+
+
+
+
+
+(((power example)))A function can have multiple parameters or no
+parameters at all. In the following example, `makeNoise` does not list
+any parameter names, whereas `power` lists two:
+
+[source,javascript]
+----
+=======
 
 Function ek expression represent karta hai , function defined karne ke liye hum uss expresion ke aage “function” keyword lagate hai.function mei parameters(iss case mei x hai) aur body hoti hai,jisko hum function ko call karte time lete hai aur ismei wo statement hoti hai jo execute honi hoti hai.function ki body ko hum braces mei lete hai fir chahe wo singhle statement ho ya double(jaisa humne pichle example mei dekha tha).
 Ek Function mei bahut jayada parameters bhi ho sakte hai aur ek bhi parameter nahi bhi ho sakta  matalab pure function mei kabhi kabhi paramter hoga hi nahi.
  
 
+>>>>>>> 3fb5d8b25225e97334fc7e7bd14154a66968ba61
 var makeNoise = function() {
   console.log("Pling!");
 };
