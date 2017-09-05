@@ -23,22 +23,14 @@ udaaharan code praayah functions aur veriebal par banaayega jo ki the
 pahale paath mein pesh kiya
 
 
-ifdef::book_target[]
->>>>>>> 0e62e6855e619b6d99fc93cc7458338d7db6b24d
-
-
-<<<<<<< HEAD
 (((sandbox)))kitaab ke lie online koding sandbox
 (http://eloquentjavascript.net/code[_eloquentjavascript.net/code_])
 ek vishisht adhyaay ke sandarbh mein code chalaane ka ek tareeka pradaan karata hai agar
-aap kisee any vaataavaran mein udaaharanon ke maadhyam se kaam karane ka nirnay lete hain,hona
-pahale se is adhyaay ke lie complite kod daunalod karana sunishchit karen
+aap kaise bh any vatavaran mein udharan ke madhyam se kaam krane ka nirnay lete hain,hona
+pehale se is adhyay ke liye complite code download karke sunishchit karen
 sandbox page.
 
 
-#hindi#
-=======
->>>>>>> 4e1a107f8eb44f93eedde72c200b170df2a76d8c
 Online coding book ke liye,
 (http://eloquentjavascript.net/code[_eloquentjavascript.net/code_])
 agar apne decide kiya hain dusre environment example mei kaam karne ka
