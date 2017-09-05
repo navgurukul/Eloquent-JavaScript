@@ -37,6 +37,14 @@ you decide to work through the examples in another environment, be
 sure to first download the full code for this chapter from the
 sandbox page.
 
+(((sandbox)))kitaab ke lie online koding sandbox
+(http://eloquentjavascript.net/code[_eloquentjavascript.net/code_])
+ek vishisht adhyaay ke sandarbh mein code chalaane ka ek tareeka pradaan karata hai agar
+aap kisee any vaataavaran mein udaaharanon ke maadhyam se kaam karane ka nirnay lete hain,hona
+pahale se is adhyaay ke lie complite kod daunalod karana sunishchit karen
+sandbox page.
+
+
 #hindi#
 Online coding book ke liye,
 (http://eloquentjavascript.net/code[_eloquentjavascript.net/code_])
