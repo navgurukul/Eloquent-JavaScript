@@ -31,6 +31,13 @@ you decide to work through the examples in another environment, be
 sure to first download the full code for this chapter from the
 sandbox page.
 
+#hindi#
+Online coding book ke liye,
+(http://eloquentjavascript.net/code[_eloquentjavascript.net/code_])
+agar apne decide kiya hain dusre environment example mei kaam karne ka
+to pehle iss chapter ka pura code download karo sandbox page se.
+
+
 endif::book_target[]
 
 == The weresquirrel ==
@@ -48,6 +55,8 @@ woke up on a precariously thin branch in the crown of an oak, naked
 and disoriented, he has taken to locking the doors and windows of his
 room at night and putting a few walnuts on the floor to keep himself
 busy.
+
+
 
 image::img/weresquirrel.png[alt="The weresquirrel"]
 
