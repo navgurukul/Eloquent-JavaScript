@@ -7,13 +7,13 @@ objects banate time hum or bhi bahut sare objects use kar sakte hia matalab ek o
 
 Ab tak hamne jo program banaye hain, usse baadhit kiya gaya hai
 fact yah hai ki keval simple data types par kaam kar rahe the. yah chapter
-aapake basic data structures ko samjhne me madad karenga. iske last mei app 
+aapake basic data structures ko samjhne me madad karenga. iske last mei app
 itne able ho jayenge ki app ek useful program start kar sakte hain.
 
 
 <<<<<<< HEAD
 chapter adhik ya kam yatarthvadi prograaming ke madhyam se kaam karega,
-introduction ko pesh karane ke saath-saath uski samsya hamare hatho me 
+introduction ko pesh karane ke saath-saath uski samsya hamare hatho me
 hoti hain. udaaharan kod aksar functions and variables par banaya jayega
 ki jaise pehle text me introduced kiya gya tha.
 =======
@@ -44,6 +44,11 @@ endif::book_target[]
 (((weresquirrel example)))(((lycanthropy)))Every now and then, usually
 between eight and ten in the evening, ((Jacques)) finds himself
 transforming into a small furry rodent with a bushy tail.
+
+(((weresquirrel example)))(((lycanthropy)))bahut pahale aur phir, aamataur par
+shyam ko eight aur ten ke beech,((Jacques)) apane aap paata hai
+ek jangalee poonchh ke saath ek chhote se pyaare krntak mein badalane.
+
 
 On one hand, Jacques is quite glad that he doesn't have classic
 lycanthropy. Turning into a squirrel tends to cause fewer problems
